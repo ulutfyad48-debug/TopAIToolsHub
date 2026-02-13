@@ -1,823 +1,362 @@
 <!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
-<script>
-  /**
-   * پروفیشنل آٹو اپڈیٹ سسٹم (2026)
-   * جب بھی آپ کوڈ بدلیں، بس نیچے والا ورژن نمبر بدل دیں
-   */
-  const CURRENT_VERSION = "v_2.0_premium"; 
-
-  async function updateSiteAssets() {
-    const savedVersion = localStorage.getItem('site_version');
-
-    // اگر ورژن مختلف ہے تو صفائی شروع کریں
-    if (savedVersion !== CURRENT_VERSION) {
-      console.log("New version detected! Updating...");
-
-      // 1. تمام کیشے ڈیلیٹ کریں (Most Important)
-      if ('caches' in window) {
-        const cacheNames = await caches.keys();
-        await Promise.all(
-          cacheNames.map(cacheName => caches.delete(cacheName))
-        );
-      }
-
-      // 2. سروس ورکر کو ان رجسٹر کریں
-      if ('serviceWorker' in navigator) {
-        const registrations = await navigator.serviceWorker.getRegistrations();
-        for (let registration of registrations) {
-          await registration.unregister();
-        }
-      }
-
-      // 3. نیا ورژن لوکل سٹوریج میں محفوظ کریں
-      localStorage.setItem('site_version', CURRENT_VERSION);
-
-      // 4. زبردستی ہارڈ ری لوڈ کریں (Cache Bypass)
-      // ری لوڈ کے ساتھ ہم ایک رینڈم نمبر بھی بھیجتے ہیں تاکہ سرور نیا ورژن ہی دے
-      window.location.href = window.location.origin + window.location.pathname + '?update=' + new Date().getTime();
-    }
-  }
-
-  // سکرپٹ رن کریں
-  updateSiteAssets();
-
-  // مین پیج کو لوڈ ہونے سے روکنے کے لیے ایک چھوٹا سا چیک
-  // تاکہ پرانی فائلز رینڈر نہ ہوں
-  window.addEventListener('load', () => {
-    console.log("Site is running on version: " + CURRENT_VERSION);
-  });
-</script>
-<link rel="manifest" <link rel="apple-touch-icon" href="icon.png">
-
-<link rel="manifest" href="manifest.json">
-
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>پروفیشنل اسٹور | Professional Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>میرا برانڈ | My Brand Store</title>
     
-    <!-- Bootstrap 5.3 RTL Core -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Google Fonts Professional Urdu & English -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* ========== PROFESSIONAL GLOBAL STYLES ========== */
-        :root {
-            --primary: #0a66c2;
-            --primary-dark: #004182;
-            --secondary: #2c3e50;
-            --accent: #6c5ce7;
-            --light: #f8fafc;
-            --dark: #0b1a2b;
-            --gray: #f1f5f9;
-            --whatsapp: #25d366;
-            --shadow-sm: 0 4px 12px rgba(0,0,0,0.05);
-            --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
-            --shadow-lg: 0 20px 40px rgba(0,0,0,0.12);
-            --radius: 24px;
-            --radius-sm: 16px;
-        }
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0d6efd">
+    <link rel="apple-touch-icon" href="icon.png">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- UNIQUE PROFESSIONAL CSS --- */
+        :root {
+            --brand-color: #0d6efd; /* اپنا پسندیدہ رنگ یہاں سے بدلیں */
+            --bg-glass: rgba(255, 255, 255, 0.95);
+            --shadow-card: 0 10px 30px rgba(0,0,0,0.08);
         }
 
         body {
-            font-family: 'Inter', 'Noto Nastaliq Urdu', sans-serif;
-            background-color: white;
-            color: var(--dark);
+            font-family: 'Poppins', 'Noto Nastaliq Urdu', sans-serif;
+            background-color: #f4f7f6;
             overflow-x: hidden;
-            line-height: 1.6;
+            padding-bottom: 80px;
         }
 
-        /* ========== PROFESSIONAL NAVBAR ========== */
-        .navbar {
-            background: rgba(255,255,255,0.98);
-            backdrop-filter: blur(16px);
-            box-shadow: var(--shadow-sm);
-            padding: 12px 0;
-            transition: all 0.3s ease;
+        /* Navbar Styling */
+        .glass-nav {
+            background: var(--bg-glass);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 15px 0;
+        }
+        
+        .brand-logo-img {
+            height: 50px; /* لوگو کا سائز */
+            width: auto;
+            object-fit: contain;
         }
 
-        .navbar-brand {
-            font-size: 1.6rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .navbar-brand i {
-            font-size: 1.8rem;
-            color: var(--primary);
-        }
-
-        .nav-link {
-            font-weight: 600;
-            color: var(--secondary);
-            padding: 8px 16px !important;
-            border-radius: 50px;
-            transition: all 0.2s;
-        }
-
-        .nav-link:hover {
-            background: var(--gray);
-            color: var(--primary);
-        }
-
-        /* ========== HERO SECTION - PREMIUM ========== */
-        /* [CHANGE 1] یہاں مین امیج (بیک گراؤنڈ) تبدیل کریں */
-        .hero-section {
-            position: relative;
-            width: 100%;
-            height: 85vh;
-            min-height: 600px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(145deg, #0b1a2b 0%, #1a2e3f 100%);
-            overflow: hidden;
-            margin-top: 76px;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url ('              https://lh3.googleusercontent.com/d/15ntHYxh4QYja8-FYfqiAacgVu65ooabD');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.4;
-            transition: transform 8s ease;
-        }
-
-        .hero-section:hover .hero-bg {
-            transform: scale(1.1);
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(11,26,43,0.3) 0%, rgba(0,0,0,0.7) 100%);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 5;
+        /* Hero Section */
+        .hero-card {
+            background: linear-gradient(135deg, var(--brand-color), #4a00e0);
+            color: white;
+            border-radius: 25px;
+            padding: 40px 20px;
+            margin-top: 20px;
             text-align: center;
-            color: white;
-            max-width: 900px;
-            padding: 20px;
-        }
-
-        .hero-title {
-            font-size: 4rem;
-            font-weight: 800;
-            line-height: 1.2;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
-            margin-bottom: 20px;
-            animation: fadeUp 1s ease;
-        }
-
-        .hero-subtitle {
-            font-size: 1.4rem;
-            font-weight: 400;
-            opacity: 0.95;
-            margin-bottom: 35px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        /* ========== PRODUCT SECTION ========== */
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 20px;
+            box-shadow: 0 15px 40px rgba(13, 110, 253, 0.3);
             position: relative;
-            display: inline-block;
+            overflow: hidden;
         }
 
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--primary);
-            border-radius: 4px;
-        }
-
-        /* Search Bar */
-        .search-wrapper {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 60px;
-            padding: 4px;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s;
-        }
-
-        .search-wrapper:focus-within {
-            box-shadow: 0 0 0 4px rgba(10,102,194,0.1);
-            border-color: var(--primary);
-        }
-
-        .search-input {
-            border: none;
-            background: transparent;
-            padding: 16px 24px;
-            font-size: 1rem;
-            border-radius: 60px;
-        }
-
-        .search-input:focus {
-            box-shadow: none;
-            outline: none;
-        }
-
-        .search-btn {
-            border-radius: 60px;
-            padding: 12px 32px;
-            background: var(--primary);
+        /* Offers Ticker */
+        .offers-ticker {
+            background: #ff4757;
             color: white;
-            font-weight: 600;
-            border: none;
-            transition: all 0.2s;
+            padding: 8px;
+            font-size: 0.9rem;
+            border-radius: 50px;
+            margin: 20px 0;
+            display: none; /* JS will show if offers exist */
+            animation: pulse 2s infinite;
         }
 
-        .search-btn:hover {
-            background: var(--primary-dark);
-            transform: scale(0.98);
-        }
-
-        /* Category Buttons */
-        .category-btn {
-            border-radius: 60px;
-            padding: 10px 24px;
-            font-weight: 600;
-            margin: 5px;
-            border: 2px solid transparent;
-            transition: all 0.2s;
-        }
-
-        .category-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .category-btn:not(.active) {
-            background: white;
-            color: var(--dark);
-            border: 2px solid #e2e8f0;
-        }
-
-        .category-btn:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        /* Product Card - Ultra Premium */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
+        /* Product Cards */
         .product-card {
             background: white;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            border: 1px solid rgba(0,0,0,0.03);
+            border-radius: 20px;
+            border: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: var(--shadow-card);
             height: 100%;
-            display: flex;
-            flex-direction: column;
+            overflow: hidden;
+            cursor: pointer;
         }
 
         .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
-        .product-image-wrapper {
-            height: 250px;
-            padding: 20px;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
         }
 
-        .product-image {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1);
-        }
-
-        .product-card:hover .product-image {
-            transform: scale(1.08);
-        }
-
-        .sale-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #ef4444;
+        /* Help Video Section */
+        .help-section {
+            background: #2f3542;
             color: white;
-            padding: 6px 16px;
-            border-radius: 60px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 10px rgba(239,68,68,0.3);
-        }
-
-        .product-details {
-            padding: 24px 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            border-top: 1px solid #f1f5f9;
-        }
-
-        .product-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--dark);
-        }
-
-        .product-category {
-            color: #64748b;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-        }
-
-        .price-wrapper {
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .current-price {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        .old-price {
-            font-size: 1rem;
-            color: #94a3b8;
-            text-decoration: line-through;
-        }
-
-        /* ========== BUTTONS & LINKS ========== */
-        .btn-primary-custom {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 14px 36px;
-            border-radius: 60px;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-            transition: all 0.2s;
-            border: 1px solid transparent;
-        }
-
-        .btn-primary-custom:hover {
-            background: var(--primary-dark);
-            color: white;
-            transform: scale(1.02);
-        }
-
-        /* Contact Links Grid */
-        .contact-links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .contact-card {
-            background: white;
             border-radius: 20px;
-            padding: 30px 20px;
+            padding: 30px;
+            margin-top: 50px;
             text-align: center;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s;
-            border: 1px solid #f1f5f9;
-            text-decoration: none;
-            color: var(--dark);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
         }
 
-        .contact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--primary);
+        /* Developer Links Box */
+        .dev-box {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #eee;
+            transition: 0.3s;
+        }
+        .dev-box:hover {
+            border-color: var(--brand-color);
         }
 
-        .contact-icon {
-            font-size: 2.4rem;
-            color: var(--primary);
-        }
-
-        .contact-title {
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-
-        .contact-text {
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        /* WhatsApp Float Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 65px;
-            height: 65px;
-            background: var(--whatsapp);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            box-shadow: 0 10px 30px rgba(37,211,102,0.4);
-            z-index: 999;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-
-        .whatsapp-float:hover {
-            background: #1da85c;
-            transform: scale(1.1) rotate(5deg);
-            color: white;
-        }
-
-        /* Footer */
-        .footer {
-            background: #0b1a2b;
-            color: white;
-            padding: 60px 0 30px;
-            margin-top: 60px;
+        /* Modal Customization */
+        .modal-content {
+            border-radius: 25px;
+            border: none;
         }
 
         /* Animations */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.4rem;
-            }
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            .section-title {
-                font-size: 2rem;
-            }
-            .product-grid {
-                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-                gap: 20px;
-            }
-            .whatsapp-float {
-                width: 55px;
-                height: 55px;
-                font-size: 28px;
-                bottom: 20px;
-                right: 20px;
-            }
+        /* Coming Soon Badge */
+        .coming-soon {
+            filter: grayscale(100%);
+            opacity: 0.7;
+            pointer-events: none;
+            position: relative;
         }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 1.8rem;
-            }
-            .product-image-wrapper {
-                height: 200px;
-            }
+        .coming-soon::after {
+            content: 'جلد آرہا ہے';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 12px;
         }
     </style>
 </head>
 <body>
 
-<!-- ========== PROFESSIONAL NAVBAR ========== -->
-<nav class="navbar navbar-expand-lg fixed-top">
-    <div class="container">
-        <!-- [CHANGE 2] اپنے اسٹور کا نام یہاں تبدیل کریں -->
-        <a class="navbar-brand" href="#">
-            <i class="bi bi-shop"></i> پریمیئم اسٹور
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarMain">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#">ہوم</a></li>
-                <li class="nav-item"><a class="nav-link" href="#products">مصنوعات</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">رابطہ</a></li>
-            </ul>
+    <nav class="navbar fixed-top glass-nav">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <img id="navLogo" src="" alt="Logo" class="brand-logo-img d-none">
+                <span id="navTitle" class="fw-bold text-primary">لوڈ ہو رہا ہے...</span>
+            </a>
+            <button class="btn btn-sm btn-outline-primary rounded-pill" onclick="installPWA()" id="installBtn" style="display:none">
+                <i class="bi bi-download"></i> ایپ انسٹال کریں
+            </button>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<!-- ========== HERO SECTION - مین امیج ========== -->
-<!-- [CHANGE 3] مین امیج کا لنک یہاں ہے (ہیرو سیکشن) -->
-<section class="hero-section">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <h1 class="hero-title">پریمیم کلیکشن 2026</h1>
-        <p class="hero-subtitle">پاکستان کی معیاری مصنوعات اب آپ کی دسترس میں</p>
-        <!-- [CHANGE 4] بٹن کا متن تبدیل کر سکتے ہیں -->
-        <a href="#products" class="btn btn-primary-custom btn-lg">اب دیکھیں</a>
-    </div>
-</section>
-
-<!-- ========== PRODUCTS SECTION ========== -->
-<section class="container py-5" id="products">
-    <div class="row justify-content-center text-center mb-5">
-        <div class="col-lg-8">
-            <h2 class="section-title">ہماری مصنوعات</h2>
-            <p class="text-secondary fs-5 mb-4">بہترین کوالٹی، بہترین قیمتیں</p>
+    <div class="container" style="margin-top: 100px;">
+        
+        <div class="hero-card" id="heroSection">
+            <h1 class="fw-bold mb-3" id="heroTitle">خوش آمدید</h1>
+            <p class="lead" id="heroDesc">بہترین کوالٹی کی مصنوعات</p>
             
-            <!-- Search Bar -->
-            <div class="search-wrapper d-flex mb-4">
-                <input type="text" id="searchInput" class="form-control search-input" placeholder="مصنوعات تلاش کریں...">
-                <button class="btn search-btn px-4" id="searchBtn"><i class="bi bi-search"></i> تلاش</button>
+            <a id="mainShopLink" href="#" class="btn btn-light text-primary fw-bold rounded-pill px-5 py-3 mt-3 shadow">
+                <i class="bi bi-cart-fill"></i> ابھی خریداری کریں (Main Store)
+            </a>
+        </div>
+
+        <div id="offersContainer" class="text-center">
             </div>
-            
-            <!-- Category Filters -->
-            <div id="categoryButtons" class="d-flex flex-wrap justify-content-center mt-3">
-                <!-- Dynamic Categories will be injected -->
+
+        <div class="d-flex justify-content-between align-items-center mt-5 mb-3">
+            <h3 class="fw-bold border-bottom border-3 border-primary pb-2">ہماری مصنوعات</h3>
+            <span class="badge bg-secondary rounded-pill" id="productCount">0 آئٹمز</span>
+        </div>
+
+        <div class="row g-4" id="productsGrid">
+            </div>
+
+        <div class="help-section shadow">
+            <h3><i class="bi bi-info-circle-fill"></i> ہیلپ سینٹر</h3>
+            <p>ویب سائٹ استعمال کرنے کا طریقہ جاننے کے لیے ویڈیو دیکھیں</p>
+            <div class="ratio ratio-16x9 mt-3 rounded overflow-hidden bg-dark">
+                <video controls id="helpVideo" poster="video-thumbnail.jpg">
+                    <source src="help-video.mp4" type="video/mp4">
+                    آپ کا براؤزر ویڈیو سپورٹ نہیں کرتا۔
+                </video>
             </div>
         </div>
-    </div>
-    
-    <!-- Products Grid -->
-    <div id="productsContainer" class="product-grid">
-        <!-- Products will be rendered here -->
-    </div>
-</section>
 
-<!-- ========== WHATSAPP FLOATING BUTTON ========== -->
-<!-- [CHANGE 5] واٹس ایپ نمبر یہاں تبدیل کریں (فارمیٹ: 92300XXXXXXX) -->
-<a href="https://wa.me/923001234567" class="whatsapp-float" target="_blank">
-    <i class="bi bi-whatsapp"></i>
-</a>
-
-<!-- ========== CONTACT / FOLLOW US SECTION ========== -->
-<section class="container py-5" id="contact">
-    <div class="row justify-content-center text-center mb-4">
-        <div class="col-lg-8">
-            <h2 class="section-title">رابطہ کریں</h2>
-            <p class="text-secondary fs-5">ہمارے پلیٹ فارمز پر فالو کریں</p>
-        </div>
-    </div>
-    
-    <!-- ====================================================== -->
-    <!-- [CHANGE 6] رابطہ لنکس یہاں تبدیل کریں -->
-    <!-- چار لنکس: کانٹیکٹ می پیج، ایبو بک پیج، دراز، مرکز -->
-    <!-- ====================================================== -->
-    <div class="contact-links-grid">
-        <!-- 1. کانٹیکٹ می پیج -->
-        <a href="https://www.contactme.com/yourpage" target="_blank" class="contact-card">
-            <i class="bi bi-person-lines-fill contact-icon"></i>
-            <span class="contact-title">کانٹیکٹ می</span>
-            <span class="contact-text">براہ راست رابطہ</span>
-        </a>
-        
-        <!-- 2. ایبو بک پیج -->
-        <a href="https://www.ibo.pk/yourpage" target="_blank" class="contact-card">
-            <i class="bi bi-book-fill contact-icon"></i>
-            <span class="contact-title">ایبو بک</span>
-            <span class="contact-text">ہمارا پیج</span>
-        </a>
-        
-        <!-- 3. دراز پر فالو می -->
-        <a href="https://www.daraz.pk/shop/yourstore" target="_blank" class="contact-card">
-            <img src="https://www.google.com/s2/favicons?domain=daraz.pk&sz=32" width="32" height="32" alt="Daraz" style="border-radius: 8px;">
-            <span class="contact-title">دراز</span>
-            <span class="contact-text">فالو می @پریمیئم</span>
-        </a>
-        
-        <!-- 4. مرکز پر فالو می -->
-        <a href="https://markaz.app/profile/yourstore" target="_blank" class="contact-card">
-            <i class="bi bi-box-seam contact-icon"></i>
-            <span class="contact-title">مرکز</span>
-            <span class="contact-text">فالو می @پریمیئم</span>
-        </a>
-    </div>
-    
-    <!-- Simple Footer -->
-    <hr class="my-5">
-    <div class="text-center text-secondary">
-        <p class="small">&copy; 2026 پریمیئم اسٹور - تمام حقوق محفوظ</p>
-    </div>
-</section>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- ========== PRODUCTS DATA & RENDERING ========== -->
-<!-- [CHANGE 7] اپنی تمام پروڈکٹس یہاں تبدیل کریں -->
-<script>
-    // ============================================
-    // مصنوعات کی لسٹ - یہاں اپنی پروڈکٹس ڈالیں
-    // تصاویر، قیمتیں، کیٹیگری، لنکس
-    // ============================================
-    const products = [
-        {
-            id: 1,
-            title: "پریمیم وائرلیس ہیڈ فون",
-            category: "الیکٹرانکس",
-            price: 4500,
-            oldPrice: 6000,
-            // ہیڈ فون امیج (آپ کا فراہم کردہ لنک)
-            image: "https://lh3.googleusercontent.com/d/15ntHYxh4QYja8-FYfqiAacgVu65ooabD",
-            links: {
-                daraz: "https://www.daraz.pk/products/xyz", // دراز لنک
-                markaz: "https://markaz.app/product/abc"    // مرکز لنک
-            }
-        },
-        {
-            id: 2,
-            title: "اسمارٹ واچ S9",
-            category: "گیجٹس",
-            price: 6500,
-            oldPrice: 8500,
-            image: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500",
-            links: {
-                daraz: "https://www.daraz.pk/smartwatch",
-                markaz: "https://markaz.app/watch"
-            }
-        },
-        {
-            id: 3,
-            title: "ڈیزائنر سن گلاسز",
-            category: "فیشن",
-            price: 2200,
-            oldPrice: 3500,
-            image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=500",
-            links: {
-                daraz: "https://www.daraz.pk/sunglasses",
-                markaz: null  // اگر مرکز لنک نہیں تو null
-            }
-        },
-        {
-            id: 4,
-            title: "پروفیشنل لیپ ٹاپ بیگ",
-            category: "بیگز",
-            price: 3200,
-            oldPrice: 4500,
-            image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500",
-            links: {
-                daraz: "https://www.daraz.pk/laptopbag",
-                markaz: "https://markaz.app/bag"
-            }
-        },
-        {
-            id: 5,
-            title: "وائرلیس ماؤس",
-            category: "الیکٹرانکس",
-            price: 1500,
-            oldPrice: 2000,
-            image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500",
-            links: {
-                daraz: "https://www.daraz.pk/mouse",
-                markaz: "https://markaz.app/mouse"
-            }
-        }
-    ];
-
-    // ============================================
-    // رینڈرنگ سسٹم - اس میں کوئی تبدیلی نہ کریں
-    // ============================================
-    const productsContainer = document.getElementById('productsContainer');
-    const categoryContainer = document.getElementById('categoryButtons');
-    const searchInput = document.getElementById('searchInput');
-
-    // تمام کیٹیگریز نکالیں
-    const allCategories = ['تمام', ...new Set(products.map(p => p.category))];
-
-    // کیٹیگری بٹن بنائیں
-    function renderCategories() {
-        const buttons = allCategories.map(cat => {
-            const isAll = cat === 'تمام';
-            return `<button class="category-btn ${isAll ? 'active' : ''}" onclick="filterProducts('${cat}')">${cat}</button>`;
-        }).join('');
-        categoryContainer.innerHTML = buttons;
-    }
-
-    // پروڈکٹس دکھائیں
-    function renderProducts(productArray) {
-        if(productArray.length === 0) {
-            productsContainer.innerHTML = '<div class="col-12 text-center py-5"><h4 class="text-muted">کوئی پروڈکٹ نہیں ملی</h4></div>';
-            return;
-        }
-
-        productsContainer.innerHTML = productArray.map(product => `
-            <div class="product-card">
-                <div class="product-image-wrapper">
-                    ${product.oldPrice ? '<span class="sale-badge">SALE</span>' : ''}
-                    <img src="${product.image}" class="product-image" alt="${product.title}" loading="lazy">
+        <div class="mt-5 mb-5">
+            <h4 class="text-center mb-4 text-muted">ہمارے بارے میں اور دیگر پروجیکٹس</h4>
+            <div class="row justify-content-center g-3">
+                
+                <div class="col-6 col-md-3">
+                    <a href="contact_me.html" class="text-decoration-none">
+                        <div class="dev-box">
+                            <i class="bi bi-person-lines-fill fs-2 text-success"></i>
+                            <h6 class="mt-2 text-dark">رابطہ کریں</h6>
+                        </div>
+                    </a>
                 </div>
-                <div class="product-details">
-                    <h3 class="product-title">${product.title}</h3>
-                    <p class="product-category">${product.category}</p>
-                    <div class="price-wrapper">
-                        <span class="current-price">Rs. ${product.price}</span>
-                        ${product.oldPrice ? `<span class="old-price">Rs. ${product.oldPrice}</span>` : ''}
-                    </div>
-                    <div class="d-grid gap-2 mt-auto">
-                        ${product.links.daraz ? `<a href="${product.links.daraz}" target="_blank" class="btn btn-outline-primary rounded-pill"><img src="https://www.google.com/s2/favicons?domain=daraz.pk&sz=16" width="16" class="ms-1"> دراز پر خریدیں</a>` : ''}
-                        ${product.links.markaz ? `<a href="${product.links.markaz}" target="_blank" class="btn btn-outline-success rounded-pill"><i class="bi bi-box-seam"></i> مرکز پر خریدیں</a>` : ''}
+
+                <div class="col-6 col-md-3">
+                    <a href="https://digitalsiteshub.github.io/" target="_blank" class="text-decoration-none">
+                        <div class="dev-box">
+                            <i class="bi bi-code-slash fs-2 text-primary"></i>
+                            <h6 class="mt-2 text-dark">مزید ویب سائٹس</h6>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <div class="dev-box coming-soon">
+                        <i class="bi bi-box-seam fs-2 text-muted"></i>
+                        <h6 class="mt-2 text-muted">نیا پروجیکٹ</h6>
                     </div>
                 </div>
             </div>
-        `).join('');
-    }
+        </div>
+    </div>
 
-    // فلٹر فنکشن
-    window.filterProducts = function(category) {
-        // بٹن ایکٹیویٹ/ڈی ایکٹیویٹ
-        const btns = document.querySelectorAll('.category-btn');
-        btns.forEach(btn => {
-            btn.classList.remove('active');
-            if(btn.innerText === category) {
-                btn.classList.add('active');
-            }
+    <div class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center pt-0">
+                    <img id="modalImg" src="" class="img-fluid rounded mb-3" style="max-height: 250px;">
+                    <h3 id="modalTitle" class="fw-bold"></h3>
+                    <p id="modalDesc" class="text-muted"></p>
+                    <h2 id="modalPrice" class="text-primary fw-bold my-3"></h2>
+                    
+                    <div class="d-grid gap-2 mt-4">
+                        <a id="linkDaraz" href="#" target="_blank" class="btn btn-warning fw-bold text-dark">
+                            <i class="bi bi-bag"></i> دراز سے خریدیں
+                        </a>
+                        <a id="linkMarkaz" href="#" target="_blank" class="btn btn-success fw-bold">
+                            <i class="bi bi-whatsapp"></i> مرکز / واٹس ایپ
+                        </a>
+                        <a id="linkOther" href="#" target="_blank" class="btn btn-outline-secondary">
+                            <i class="bi bi-globe"></i> دیگر پلیٹ فارم
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="data.js"></script> 
+    
+    <script>
+        // PWA Registration
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+
+        // PWA Install Prompt Logic
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('installBtn').style.display = 'block';
         });
-        
-        // فلٹرنگ
-        let filtered;
-        if(category === 'تمام') {
-            filtered = products;
-        } else {
-            filtered = products.filter(p => p.category === category);
+
+        async function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    document.getElementById('installBtn').style.display = 'none';
+                }
+                deferredPrompt = null;
+            }
         }
-        renderProducts(filtered);
-    };
 
-    // سرچ فنکشن
-    searchInput.addEventListener('input', function(e) {
-        const searchTerm = e.target.value.toLowerCase();
-        const filtered = products.filter(p => 
-            p.title.toLowerCase().includes(searchTerm) || 
-            p.category.toLowerCase().includes(searchTerm)
-        );
-        renderProducts(filtered);
-        
-        // کیٹیگری بٹن سے ایکٹیو ہٹائیں
-        document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-    });
+        // Load Data from data.js
+        window.onload = function() {
+            // Load Site Info
+            document.getElementById('navTitle').innerText = siteData.name;
+            document.getElementById('navLogo').src = siteData.logo;
+            document.getElementById('navLogo').classList.remove('d-none');
+            
+            document.getElementById('heroTitle').innerText = siteData.heroTitle;
+            document.getElementById('heroDesc').innerText = siteData.heroDesc;
+            document.getElementById('mainShopLink').href = siteData.mainShopLink;
 
-    // انیشیلائز
-    renderCategories();
-    renderProducts(products);
-</script>
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js')
-        .then(reg => console.log('PWA Registered!'))
-        .catch(err => console.log('PWA Failed', err));
-    });
-  }
-</script>
+            // Load Offers
+            const offerContainer = document.getElementById('offersContainer');
+            if(offersData.length > 0) {
+                offersData.forEach(offer => {
+                    offerContainer.innerHTML += `
+                        <div class="offers-ticker shadow-sm">
+                            <i class="bi bi-megaphone-fill"></i> ${offer.text}
+                        </div>`;
+                });
+                document.querySelector('.offers-ticker').style.display = 'block';
+            }
 
+            // Load Products
+            const grid = document.getElementById('productsGrid');
+            document.getElementById('productCount').innerText = productsData.length + " آئٹمز";
+            
+            productsData.forEach((product, index) => {
+                grid.innerHTML += `
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="product-card" onclick="openProduct(${index})">
+                            <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                            <div class="p-3">
+                                <h6 class="fw-bold text-truncate">${product.name}</h6>
+                                <p class="small text-muted mb-1">${product.category}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold text-primary">Rs. ${product.price}</span>
+                                    <i class="bi bi-arrow-left-circle-fill fs-4 text-secondary"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        };
+
+        // Open Product Modal
+        function openProduct(index) {
+            const p = productsData[index];
+            const modal = new bootstrap.Modal(document.getElementById('productModal'));
+            
+            document.getElementById('modalImg').src = p.image;
+            document.getElementById('modalTitle').innerText = p.name;
+            document.getElementById('modalDesc').innerText = p.desc;
+            document.getElementById('modalPrice').innerText = "Rs. " + p.price;
+            
+            // Handle Links (Show 'Coming Soon' if link is empty)
+            setupLink('linkDaraz', p.links.daraz);
+            setupLink('linkMarkaz', p.links.markaz);
+            setupLink('linkOther', p.links.other);
+
+            modal.show();
+        }
+
+        function setupLink(elementId, linkUrl) {
+            const btn = document.getElementById(elementId);
+            if (!linkUrl || linkUrl === "#") {
+                btn.classList.add('disabled');
+                btn.innerHTML = btn.innerHTML.split('</i>')[0] + '</i> کمنگ سون (Coming Soon)';
+            } else {
+                btn.classList.remove('disabled');
+                btn.href = linkUrl;
+                // Reset Text (Optional logic requires storing original text)
+            }
+        }
+    </script>
 </body>
 </html>
