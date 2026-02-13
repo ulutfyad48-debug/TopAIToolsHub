@@ -1,20 +1,182 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Help Center</title>
+    <title>Elite Brands - Help Center</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        /* Urdu Font Styling */
+        .urdu-text {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            line-height: 1.8;
+            direction: rtl;
+        }
+        .help-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            background: white;
+            margin-bottom: 20px;
+        }
+        .accordion-button {
+            background-color: #fff;
+            color: #333;
+            font-weight: 600;
+        }
+        .accordion-button:not(.collapsed) {
+            background-color: #e7f1ff;
+            color: #0d6efd;
+            box-shadow: none;
+        }
+        .accordion-button:focus {
+            box-shadow: none;
+        }
+        .step-badge {
+            background-color: #0d6efd;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 8px;
+        }
+        .important-note {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
-<body class="bg-light p-4">
-    <div class="container bg-white p-4 rounded shadow-sm" style="max-width:600px;">
-        <h3>Help Center / مدد</h3>
-        <hr>
-        <h5>آرڈر کیسے کریں؟</h5>
-        <p>کیٹلاگ میں جائیں، پروڈکٹ پسند کریں اور واٹس ایپ یا دراز کے بٹن پر کلک کریں۔</p>
-        <h5>How to track order?</h5>
-        <p>Contact us on WhatsApp with your Order ID.</p>
-        <a href="index.html" class="btn btn-dark mt-3">Back to Home</a>
+<body class="p-3">
+
+    <div class="container" style="max-width: 600px;">
+        
+        <div class="text-center mb-4">
+            <h2 class="fw-bold text-primary">Help Center</h2>
+            <h4 class="urdu-text text-secondary">مرکزِ رہنمائی</h4>
+            <p class="text-muted small">How can we help you today? / ہم آپ کی کیا مدد کر سکتے ہیں؟</p>
+        </div>
+
+        <div class="accordion" id="helpAccordion">
+
+            <div class="accordion-item help-card">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <i class="bi bi-globe me-2"></i> Method 1: Order via Website (Direct)
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#helpAccordion">
+                    <div class="accordion-body">
+                        <h5 class="urdu-text text-end mb-3">ویب سائٹ سے براہ راست آرڈر کرنے کا طریقہ</h5>
+                        
+                        <div class="d-flex align-items-start mb-3">
+                            <span class="step-badge">1</span>
+                            <div>
+                                <strong>Select Product:</strong> Choose your item and click "Add to Cart".
+                                <br><span class="urdu-text text-muted">اپنی پسندیدہ پروڈکٹ منتخب کریں اور کارٹ میں شامل کریں۔</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start mb-3">
+                            <span class="step-badge">2</span>
+                            <div>
+                                <strong>Enter Details:</strong> Fill in your Name, Phone Number, and select Payment Method (Cash/Easypaisa).
+                                <br><span class="urdu-text text-muted">اپنا نام، فون نمبر لکھیں اور ادائیگی کا طریقہ (کیش/ایزی پیسہ) منتخب کریں۔</span>
+                            </div>
+                        </div>
+
+                        <div class="important-note mt-3">
+                            <h6 class="text-danger fw-bold"><i class="bi bi-exclamation-triangle-fill"></i> Important Step / اہم مرحلہ</h6>
+                            <p class="mb-1"><strong>Save your Tracking Link!</strong></p>
+                            <p class="small text-muted">After the order is sent, you will see a confirmation screen. Please click the <strong>"Copy Link"</strong> button immediately.</p>
+                            <hr>
+                            <p class="urdu-text mb-0 text-end">آرڈر مکمل ہونے پر آپ کو "Order Sent" کی سکرین نظر آئے گی۔ وہاں موجود <strong>"Copy Link"</strong> کے بٹن کو دبا کر لنک محفوظ کر لیں۔</p>
+                            <p class="urdu-text text-end small text-danger">یہ لنک آپ کے پاس محفوظ رہنا چاہیے تاکہ آپ براؤزر میں پیسٹ کر کے اپنا آرڈر ٹریک کر سکیں۔</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item help-card">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <i class="bi bi-shop me-2"></i> Method 2: Order via Partners (Catalog)
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#helpAccordion">
+                    <div class="accordion-body">
+                        <h5 class="urdu-text text-end mb-3">کیٹلاگ، دراز یا مرکز ایپ سے آرڈر کا طریقہ</h5>
+                        
+                        <div class="d-flex align-items-start mb-3">
+                            <span class="step-badge">1</span>
+                            <div>
+                                <strong>Browse Catalog:</strong> Look at the images and details in our catalog section.
+                                <br><span class="urdu-text text-muted">ہمارے کیٹلاگ میں مصنوعات اور ان کی تصاویر دیکھیں۔</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start mb-3">
+                            <span class="step-badge">2</span>
+                            <div>
+                                <strong>Click the Button:</strong> Under the image, click on buttons like <strong>Markaz</strong>, <strong>Daraz</strong>, or <strong>WhatsApp Order</strong>.
+                                <br><span class="urdu-text text-muted">تصویر کے نیچے موجود بٹن (جیسے مرکز، دراز یا واٹس ایپ) پر کلک کریں۔</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start mb-3">
+                            <span class="step-badge">3</span>
+                            <div>
+                                <strong>Complete Order:</strong> You will be redirected to that app to finish your order.
+                                <br><span class="urdu-text text-muted">آپ خودکار طور پر اس ایپ پر چلے جائیں گے جہاں آپ آرڈر مکمل کر سکتے ہیں۔</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item help-card">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <i class="bi bi-geo-alt-fill me-2"></i> How to Track Order? / ٹریکنگ
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#helpAccordion">
+                    <div class="accordion-body text-center">
+                        <p>If you ordered via Website, paste your saved link in the browser.</p>
+                        <p class="urdu-text">اگر آپ نے ویب سائٹ سے آرڈر کیا ہے تو اپنا محفوظ کیا ہوا لنک براؤزر میں کھولیں۔</p>
+                        <hr>
+                        <p>Still facing issues? / کوئی مسئلہ ہے؟</p>
+                        <a href="https://wa.me/923102890002" class="btn btn-success rounded-pill px-4">
+                            <i class="bi bi-whatsapp"></i> Contact on WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="index.html" class="btn btn-dark w-100 py-2 rounded-pill shadow-sm">
+                <i class="bi bi-arrow-left"></i> Back to Home
+            </a>
+        </div>
+
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
