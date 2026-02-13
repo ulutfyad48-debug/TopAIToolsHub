@@ -1,536 +1,284 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Brands | Pakistan</title>
-   
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <title>Elite Brands | Professional Store</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         :root {
-            --brand-dark: #121212;
-            --accent-gold: #c5a059;
-            --soft-bg: #f4f6f9;
-            --urdu-font: 'Noto Nastaliq Urdu', serif;
+            --primary: #1a1a1a;
+            --gold: #c5a059;
+            --bg-soft: #f8f9fa;
+            --font-ur: 'Noto Nastaliq Urdu', serif;
+            --font-en: 'Plus Jakarta Sans', sans-serif;
         }
 
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--soft-bg);
-            color: var(--brand-dark);
-            padding-bottom: 80px; /* Space for footer */
+        body { font-family: var(--font-en); background: var(--bg-soft); color: var(--primary); padding-bottom: 70px; }
+        .urdu { font-family: var(--font-ur); line-height: 1.8; }
+        
+        /* Navbar */
+        .top-nav { background: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        
+        /* Header Section */
+        .brand-hero { text-align: center; padding: 40px 20px; background: linear-gradient(180deg, #fff 0%, #f1f1f1 100%); border-bottom: 1px solid #ddd; }
+        .brand-logo { width: 90px; height: 90px; object-fit: contain; border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 15px; background: white; padding: 5px; }
+        
+        .hadith-card {
+            background: #fff8e1; border-left: 4px solid var(--gold);
+            padding: 15px; margin: 20px auto; max-width: 600px;
+            border-radius: 8px; font-size: 0.9rem; text-align: center;
         }
 
-        .urdu-text {
-            font-family: var(--urdu-font);
-            line-height: 1.8;
+        /* Choice Buttons */
+        .choice-container { max-width: 500px; margin: -30px auto 0; position: relative; z-index: 10; padding: 0 15px; }
+        .choice-btn {
+            background: white; border: 2px solid var(--primary); color: var(--primary);
+            padding: 20px; border-radius: 15px; width: 100%; margin-bottom: 15px;
+            display: flex; align-items: center; justify-content: space-between;
+            transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); cursor: pointer;
+        }
+        .choice-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .choice-btn.primary { background: var(--primary); color: white; border: none; }
+        .choice-icon { font-size: 1.8rem; margin-right: 15px; }
+        .choice-text h5 { margin: 0; font-weight: 700; font-size: 1.1rem; }
+        .choice-text p { margin: 0; font-size: 0.8rem; opacity: 0.8; font-family: var(--font-ur); }
+
+        /* Catalog Mode (Initially Hidden) */
+        #catalogSection { display: none; padding-top: 20px; }
+        .search-box { background: white; padding: 10px; border-radius: 50px; display: flex; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .search-box input { border: none; outline: none; width: 100%; padding: 5px 10px; }
+        
+        .product-card { background: white; border-radius: 15px; overflow: hidden; border: none; box-shadow: 0 5px 10px rgba(0,0,0,0.05); height: 100%; transition: 0.3s; }
+        .product-card:hover { transform: translateY(-5px); }
+        .p-img-box { height: 200px; overflow: hidden; position: relative; }
+        .p-img-box img { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* Ads */
+        .ad-banner { 
+            background: #e9ecef; border: 1px dashed #adb5bd; color: #6c757d;
+            padding: 20px; text-align: center; margin: 20px 0; border-radius: 10px; font-size: 0.8rem;
         }
 
-        /* --- Navbar --- */
-        .navbar-custom {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            padding: 10px 0;
+        /* Iframe Overlay */
+        #siteOverlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: white; z-index: 9999; display: none; flex-direction: column;
         }
+        .overlay-header { padding: 10px 15px; background: var(--primary); color: white; display: flex; justify-content: space-between; align-items: center; }
+        .overlay-frame { flex: 1; border: none; width: 100%; height: 100%; }
 
-        /* --- Hero Section --- */
-        .brand-header {
-            padding: 40px 20px;
-            text-align: center;
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            border-bottom: 1px solid #eee;
-            position: relative;
-        }
-
-        .main-logo {
-            width: 90px;
-            height: 90px;
-            object-fit: contain;
-            border-radius: 50%;
-            background: white;
-            padding: 5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin-bottom: 15px;
-        }
-
-        .hadith-box {
-            background: #fff8e1;
-            border-left: 4px solid var(--accent-gold);
-            padding: 15px;
-            margin: 20px auto;
-            max-width: 600px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-        }
-
-        /* --- Main Choice Buttons --- */
-        .choice-section {
-            padding: 20px 0;
-        }
-
-        .btn-dual-lang {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            border-radius: 15px;
-            border: 2px solid var(--brand-dark);
-            background: white;
-            color: var(--brand-dark);
-            transition: 0.3s;
-            text-align: center;
-            height: 100%;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-dual-lang:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-
-        .btn-dual-lang.primary {
-            background: var(--brand-dark);
-            color: white;
-            border: none;
-        }
-       
-        .btn-dual-lang i { font-size: 2rem; margin-bottom: 10px; }
-        .lang-en { font-weight: 700; text-transform: uppercase; font-size: 1.1rem; }
-        .lang-ur { font-family: var(--urdu-font); font-size: 1rem; opacity: 0.9; margin-top: 5px; }
-
-        /* --- Search & Filter --- */
-        .search-bar-container {
-            background: white;
-            padding: 15px;
-            border-radius: 50px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-            display: flex;
-            gap: 10px;
-        }
-       
-        .search-input {
-            border: none;
-            outline: none;
-            width: 100%;
-            padding: 5px 15px;
-        }
-
-        /* --- Product Cards --- */
-        .product-card {
-            background: white;
-            border-radius: 20px;
-            border: none;
-            overflow: hidden;
-            transition: 0.3s;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .img-container {
-            height: 220px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.5s;
-        }
-       
-        .product-card:hover .img-container img { transform: scale(1.1); }
-
-        .prod-desc {
-            font-family: var(--urdu-font);
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 15px;
-            line-height: 1.6;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .price-tag {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--accent-gold);
-        }
-
-        /* --- Ads --- */
-        .ad-banner {
-            width: 100%;
-            background: #e9ecef;
-            border: 1px dashed #ced4da;
-            color: #6c757d;
-            text-align: center;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-        }
-
-        /* --- Internal Browser Overlay --- */
-        #browserOverlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: white;
-            z-index: 10000;
-            display: none;
-            flex-direction: column;
-        }
-        .browser-nav {
-            background: var(--brand-dark);
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        iframe { flex: 1; border: none; }
-
-        /* --- Footer Menu --- */
-        .footer-nav {
-            position: fixed;
-            bottom: 0; left: 0; width: 100%;
-            background: white;
-            border-top: 1px solid #eee;
-            padding: 10px 0;
-            display: flex;
-            justify-content: space-around;
-            z-index: 1000;
-        }
-        .footer-item {
-            text-align: center;
-            color: #666;
-            text-decoration: none;
-            font-size: 0.8rem;
-            cursor: pointer;
-        }
-        .footer-item i { display: block; font-size: 1.2rem; margin-bottom: 2px; }
-        .footer-item:hover { color: var(--accent-gold); }
+        /* Footer */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: white; border-top: 1px solid #eee; display: flex; justify-content: space-around; padding: 10px 0; z-index: 100; }
+        .nav-item { text-align: center; color: #666; text-decoration: none; font-size: 0.75rem; }
+        .nav-item i { display: block; font-size: 1.2rem; margin-bottom: 2px; }
+        .nav-item:hover { color: var(--gold); }
 
     </style>
 </head>
 <body>
 
-    <nav class="navbar-custom">
-        <div class="container d-flex justify-content-between align-items-center">
-            <span class="badge bg-secondary">BETA v2.0</span>
-            <button class="btn btn-sm btn-outline-dark rounded-pill" data-bs-toggle="modal" data-bs-target="#helpModal">
-                <i class="bi bi-question-circle"></i> Help / مدد
-            </button>
+    <div class="top-nav">
+        <span class="badge bg-dark">VERIFIED</span>
+        <a href="help.html" class="btn btn-sm btn-outline-dark rounded-pill px-3">
+            <i class="bi bi-question-circle"></i> Help
+        </a>
+    </div>
+
+    <div id="homeView">
+        <header class="brand-hero">
+            <img id="brandLogo" src="" class="brand-logo" alt="Logo">
+            <h2 id="brandName" class="fw-bold mb-1">Brand Name</h2>
+            <p class="text-muted small">Quality & Trust | معیاری اور بااعتماد</p>
+
+            <div class="hadith-card">
+                <p class="mb-1 urdu fw-bold" id="hUrdu">...</p>
+                <small class="text-muted fst-italic" id="hEng">...</small>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="ad-banner">
+                <p>ADVERTISEMENT SPACE (Top)</p>
+            </div>
         </div>
-    </nav>
 
-    <header class="brand-header">
-        <img id="mainLogo" src="" class="main-logo" alt="Logo">
-        <h2 id="brandName" class="fw-bold mb-1">...</h2>
-        <p class="text-muted small">Premium Shopping Experience</p>
+        <div class="choice-container">
+            <div class="choice-btn primary" onclick="openDirectShop()">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-shop-window choice-icon"></i>
+                    <div class="choice-text text-start">
+                        <h5>Shop Direct</h5>
+                        <p>ویب سائٹ سے آرڈر کریں</p>
+                    </div>
+                </div>
+                <i class="bi bi-chevron-right"></i>
+            </div>
 
-        <div class="hadith-box">
-            <p class="mb-1 urdu-text fw-bold" id="hadithUrdu">...</p>
-            <small class="text-muted fst-italic" id="hadithEnglish">...</small>
-        </div>
-    </header>
-
-    <div class="container">
-        <div class="ad-banner">
-            <span>AD SPACE 1 (Banner)</span>
+            <div class="choice-btn" onclick="showCatalog()">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-grid-3x3-gap-fill choice-icon"></i>
+                    <div class="choice-text text-start">
+                        <h5>Browse Catalog</h5>
+                        <p>کیٹلاگ دیکھیں (Daraz/WhatsApp)</p>
+                    </div>
+                </div>
+                <i class="bi bi-chevron-right"></i>
+            </div>
         </div>
     </div>
 
-    <section class="choice-section">
-        <div class="container">
-            <div class="row g-3 justify-content-center">
-               
-                <div class="col-6 col-md-5">
-                    <button class="btn-dual-lang primary w-100" onclick="openInternalSite()">
-                        <i class="bi bi-shop-window"></i>
-                        <span class="lang-en">Shop Direct</span>
-                        <span class="lang-ur">ویب سائٹ سے آرڈر کریں</span>
-                    </button>
-                </div>
+    <div class="container" id="catalogSection">
+        <button class="btn btn-link text-dark text-decoration-none mb-3 px-0" onclick="goHome()">
+            <i class="bi bi-arrow-left"></i> Back to Home
+        </button>
 
-                <div class="col-6 col-md-5">
-                    <button class="btn-dual-lang w-100" onclick="scrollToCatalog()">
-                        <i class="bi bi-grid-3x3-gap-fill"></i>
-                        <span class="lang-en">Browse Catalog</span>
-                        <span class="lang-ur">پروڈکٹ پسند کریں (کیٹلاگ)</span>
-                    </button>
-                </div>
+        <h4 class="fw-bold mb-3 border-start border-4 border-warning ps-2">Our Products</h4>
 
+        <div class="row g-2 mb-4">
+            <div class="col-8">
+                <div class="search-box">
+                    <i class="bi bi-search text-muted ms-2"></i>
+                    <input type="text" id="searchInput" placeholder="Search products..." onkeyup="renderProducts()">
+                </div>
             </div>
-           
-            <div class="text-center mt-3 text-muted opacity-50">
-                <i class="bi bi-chevron-down fs-4"></i>
-            </div>
-        </div>
-    </section>
-
-    <main class="container my-4" id="catalog">
-       
-        <div class="row justify-content-center mb-4">
-            <div class="col-md-8">
-                <div class="search-bar-container">
-                    <i class="bi bi-search text-muted mt-1 ms-2"></i>
-                    <input type="text" id="searchInput" class="search-input" placeholder="Search products / تلاش کریں..." onkeyup="filterProducts()">
-                    <select class="form-select border-0 bg-light rounded-pill" style="width: 120px;" id="catFilter" onchange="filterProducts()">
-                        <option value="all">All</option>
-                        </select>
-                </div>
+            <div class="col-4">
+                <select class="form-select rounded-pill border-0 shadow-sm" id="catFilter" onchange="renderProducts()">
+                    <option value="All">All</option>
+                </select>
             </div>
         </div>
 
-        <h4 class="fw-bold mb-4 ps-2 border-start border-5 border-warning">Latest Collection</h4>
-       
-        <div class="row g-4" id="productGrid">
+        <div class="row g-4" id="productsContainer">
             </div>
 
         <div class="ad-banner mt-5">
-            <span>AD SPACE 2 (Bottom Banner)</span>
-        </div>
-
-    </main>
-
-    <div class="footer-nav">
-        <div class="footer-item" data-bs-toggle="modal" data-bs-target="#contactModal">
-            <i class="bi bi-whatsapp"></i> Contact / رابطہ
-        </div>
-        <div class="footer-item" data-bs-toggle="modal" data-bs-target="#aboutModal">
-            <i class="bi bi-person-circle"></i> About / تعارف
-        </div>
-        <div class="footer-item" data-bs-toggle="modal" data-bs-target="#devModal">
-            <i class="bi bi-code-slash"></i> Developer
+            <p>ADVERTISEMENT SPACE (Bottom)</p>
         </div>
     </div>
 
+    <nav class="bottom-nav">
+        <a href="contact.html" class="nav-item">
+            <i class="bi bi-envelope"></i> Contact
+        </a>
+        <a href="about.html" class="nav-item">
+            <i class="bi bi-person-badge"></i> About
+        </a>
+        <a href="#" id="devLink" target="_blank" class="nav-item">
+            <i class="bi bi-code-slash"></i> Dev Hub
+        </a>
+    </nav>
 
-    <div class="modal fade" id="contactModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Contact Us / رابطہ کریں</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <p>کسی بھی مسئلے یا آرڈر کے لیے ہم سے رابطہ کریں۔</p>
-                    <a href="#" id="waLink" class="btn btn-success w-100 rounded-pill mb-2">
-                        <i class="bi bi-whatsapp"></i> WhatsApp Now
-                    </a>
-                    <p class="mt-3 small text-muted">Response time: 1-2 Hours</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="aboutModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">About Me / میرے بارے میں</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <p class="urdu-text text-end">
-                        السلام علیکم! یہ پلیٹ فارم آپ کو بہترین پروڈکٹس فراہم کرنے کے لیے بنایا گیا ہے۔ ہمارا مقصد حلال اور ایماندارانہ تجارت ہے۔
-                    </p>
-                    <hr>
-                    <p class="small text-muted">
-                        We strive to provide premium quality products at the best prices with complete transparency.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="devModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Developer Hub</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1005/1005141.png" width="60" class="mb-3">
-                    <h6>Developed by <span id="devNameDisplay"></span></h6>
-                    <p class="small text-muted">More platforms & tools coming soon.</p>
-                    <a href="#" id="devLink" target="_blank" class="btn btn-outline-dark btn-sm rounded-pill">
-                        Visit Portfolio
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="helpModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Help Center / مدد</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <strong>آرڈر کیسے کریں؟</strong><br>
-                            <span class="urdu-text small">شاپ ڈائریکٹ پر کلک کریں یا کیٹلاگ میں پسند کر کے واٹس ایپ پر رابطہ کریں۔</span>
-                        </li>
-                        <li class="list-group-item">
-                            <strong>ڈلیوری ٹائم؟</strong><br>
-                            <span class="small">3 سے 5 دن (پورے پاکستان میں)</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="browserOverlay">
-        <div class="browser-nav">
-            <div class="d-flex align-items-center">
-                <img id="overlayLogo" src="" width="30" class="me-2 rounded-circle">
-                <span class="fw-bold small">Secure Store View</span>
-            </div>
-            <button class="btn btn-sm btn-danger rounded-pill px-3" onclick="closeBrowser()">
+    <div id="siteOverlay">
+        <div class="overlay-header">
+            <small class="fw-bold"> Secure View </small>
+            <button class="btn btn-sm btn-danger rounded-pill px-3" onclick="closeDirectShop()">
                 <i class="bi bi-x-lg"></i> Close
             </button>
         </div>
-        <iframe id="browserFrame" src=""></iframe>
+        <iframe id="shopFrame" class="overlay-frame" src=""></iframe>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="data.js"></script>
     <script>
-        // Initialize Site
+        // --- Initialization ---
         window.onload = function() {
-            // Load Config
+            // Load Brand Info
             document.getElementById('brandName').innerText = siteConfig.brandName;
-            document.getElementById('mainLogo').src = siteConfig.brandLogo;
-            document.getElementById('overlayLogo').src = siteConfig.brandLogo;
-           
-            // Load Hadith
-            document.getElementById('hadithUrdu').innerText = siteConfig.hadithUrdu;
-            document.getElementById('hadithEnglish').innerText = siteConfig.hadithEnglish;
+            document.getElementById('brandLogo').src = siteConfig.brandLogo;
+            document.getElementById('hUrdu').innerText = siteConfig.hadithUrdu;
+            document.getElementById('hEng').innerText = siteConfig.hadithEnglish;
+            document.getElementById('devLink').href = siteConfig.developerUrl;
 
-            // Load Links
-            document.getElementById('waLink').href = "https://wa.me/" + siteConfig.helpContact;
-            document.getElementById('devNameDisplay').innerText = siteConfig.devName;
-            document.getElementById('devLink').href = siteConfig.devPortfolio;
+            // Load Categories
+            const categories = ['All', ...new Set(products.map(p => p.category))];
+            const catSelect = document.getElementById('catFilter');
+            categories.forEach(cat => {
+                if(cat !== 'All') {
+                    let opt = document.createElement('option');
+                    opt.value = cat; opt.innerText = cat;
+                    catSelect.appendChild(opt);
+                }
+            });
 
-            renderProducts(products);
-            populateCategories();
+            renderProducts();
         };
 
-        // Navigation Functions
-        function openInternalSite() {
-            const overlay = document.getElementById('browserOverlay');
-            overlay.style.display = 'flex';
-            document.getElementById('browserFrame').src = siteConfig.mainSiteUrl;
+        // --- Navigation Logic ---
+        function openDirectShop() {
+            document.getElementById('siteOverlay').style.display = 'flex';
+            document.getElementById('shopFrame').src = siteConfig.directShopUrl;
         }
 
-        function closeBrowser() {
-            document.getElementById('browserOverlay').style.display = 'none';
-            document.getElementById('browserFrame').src = '';
+        function closeDirectShop() {
+            document.getElementById('siteOverlay').style.display = 'none';
+            document.getElementById('shopFrame').src = '';
         }
 
-        function scrollToCatalog() {
-            document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+        function showCatalog() {
+            document.getElementById('homeView').style.display = 'none';
+            document.getElementById('catalogSection').style.display = 'block';
+            window.scrollTo(0,0);
         }
 
-        // --- Core Functions ---
-
-        function populateCategories() {
-            const categories = [...new Set(products.map(p => p.category))];
-            const select = document.getElementById('catFilter');
-            categories.forEach(cat => {
-                let option = document.createElement('option');
-                option.value = cat;
-                option.innerText = cat;
-                select.appendChild(option);
-            });
+        function goHome() {
+            document.getElementById('catalogSection').style.display = 'none';
+            document.getElementById('homeView').style.display = 'block';
         }
 
-        function filterProducts() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const category = document.getElementById('catFilter').value;
+        // --- Product Logic ---
+        function renderProducts() {
+            const container = document.getElementById('productsContainer');
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const filter = document.getElementById('catFilter').value;
+
+            container.innerHTML = '';
 
             const filtered = products.filter(p => {
-                const matchesSearch = p.title.toLowerCase().includes(query) || p.description.toLowerCase().includes(query);
-                const matchesCat = category === 'all' || p.category === category;
+                const matchesSearch = p.title.toLowerCase().includes(search) || p.description.toLowerCase().includes(search);
+                const matchesCat = filter === 'All' || p.category === filter;
                 return matchesSearch && matchesCat;
             });
 
-            renderProducts(filtered);
-        }
-
-        function renderProducts(productList) {
-            const grid = document.getElementById('productGrid');
-            grid.innerHTML = '';
-
-            if(productList.length === 0) {
-                grid.innerHTML = '<div class="text-center py-5 text-muted">No products found / کوئی پروڈکٹ نہیں ملا</div>';
+            if(filtered.length === 0) {
+                container.innerHTML = '<div class="col-12 text-center text-muted mt-5">No products found / کوئی پروڈکٹ نہیں ملا</div>';
                 return;
             }
-           
-            productList.forEach(p => {
-                // Dynamic Buttons
-                let platformButtons = '';
-                p.platforms.forEach(link => {
-                    let btnClass = link.name.toLowerCase().includes('whatsapp') ? 'btn-success' : 'btn-light';
-                    let icon = link.name.toLowerCase().includes('whatsapp') ? '<i class="bi bi-whatsapp me-1"></i>' : '<i class="bi bi-box-arrow-up-right me-1"></i>';
-                   
-                    platformButtons += `
-                        <a href="${link.url}" target="_blank" class="btn btn-sm ${btnClass} flex-grow-1 border">
-                            ${icon} ${link.name}
-                        </a>
-                    `;
+
+            filtered.forEach(p => {
+                let buttonsHTML = '';
+                p.links.forEach(link => {
+                    let btnColor = link.name.toLowerCase().includes('whatsapp') ? 'btn-success' : 'btn-dark';
+                    buttonsHTML += `
+                        <a href="${link.url}" target="_blank" class="btn btn-sm ${btnColor} flex-grow-1">
+                            <i class="bi ${link.icon}"></i> ${link.name}
+                        </a>`;
                 });
 
-                grid.innerHTML += `
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="product-card h-100">
-                            <div class="img-container">
-                                <img src="${p.image}" alt="${p.title}">
-                                <div class="position-absolute top-0 start-0 p-2">
-                                    <span class="badge bg-dark opacity-75">${p.category}</span>
-                                </div>
+                const html = `
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="product-card">
+                        <div class="p-img-box">
+                            <img src="${p.image}" alt="${p.title}">
+                            <span class="position-absolute top-0 start-0 bg-warning small px-2 py-1 fw-bold m-2 rounded">${p.category}</span>
+                        </div>
+                        <div class="p-3">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <h6 class="fw-bold mb-1">${p.title}</h6>
+                                <span class="text-warning fw-bold">Rs.${p.price}</span>
                             </div>
-                            <div class="p-3 d-flex flex-column h-100">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h6 class="fw-bold mb-0 text-truncate">${p.title}</h6>
-                                    <span class="price-tag small">Rs.${p.price}</span>
-                                </div>
-                               
-                                <p class="prod-desc flex-grow-1">${p.description || 'No description available.'}</p>
-                               
-                                <div class="d-flex flex-wrap gap-2 mt-3">
-                                    ${platformButtons}
-                                </div>
+                            <p class="small text-muted urdu mb-3">${p.description}</p>
+                            <div class="d-flex gap-2">
+                                ${buttonsHTML}
                             </div>
                         </div>
                     </div>
-                `;
+                </div>`;
+                container.innerHTML += html;
             });
         }
     </script>
