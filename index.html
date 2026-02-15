@@ -14,6 +14,7 @@ body{font-family:sans-serif;background:#fdf2f4;padding-bottom:100px}
 .choice-btn:hover{background:#eee}
 #catalogSection,#shopSection{display:none}
 .bottom-nav{position:fixed;bottom:0;left:0;width:100%;background:white;padding:15px;text-align:center;border-top:1px solid #ddd}
+.card{border-radius:15px}
 </style>
 </head>
 <body>
@@ -48,17 +49,17 @@ body{font-family:sans-serif;background:#fdf2f4;padding-bottom:100px}
             <input class="form-control mb-2" id="phone" placeholder="واٹس ایپ نمبر" required>
             <input class="form-control mb-2" id="city" placeholder="شہر" required>
 
-            <select class="form-control mb-2" id="province" onchange="updateDelivery()">
+            <select class="form-control mb-2" id="province" onchange="updateDelivery()" required>
                 <option value="">انتخاب کریں</option>
-                <option value="peshawar">پشاور (100)</option>
-                <option value="kpk">KPK (200)</option>
-                <option value="other">دیگر صوبے (300)</option>
-                <option value="pickup">Pickup (0)</option>
+                <option value="peshawar">پشاور</option>
+                <option value="kpk">KPK</option>
+                <option value="other">دیگر صوبے</option>
+                <option value="pickup">خود آ کر وصول کریں (Pickup)</option>
             </select>
 
             <textarea class="form-control mb-2" id="address" placeholder="مکمل پتہ"></textarea>
 
-            <div id="deliveryText"></div>
+            <div id="deliveryText" class="fw-bold"></div>
 
             <button class="btn btn-success w-100 mt-3">واٹس ایپ پر آرڈر کریں</button>
         </form>
@@ -69,14 +70,10 @@ body{font-family:sans-serif;background:#fdf2f4;padding-bottom:100px}
 SSelix Official Store
 </div>
 
-<script>
-/* ---------- PRODUCTS ---------- */
-const products=[
-{id:1,title:"Foundation",price:2000,externalUrl:"#"},
-{id:2,title:"Serum",price:1200,externalUrl:"https://daraz.pk"},
-{id:3,title:"Lipstick",price:500,externalUrl:"#"}
-];
+<!-- DATA FILE -->
+<script src="data.js"></script>
 
+<script>
 let cart=[];
 let delivery=0;
 
@@ -104,13 +101,16 @@ document.getElementById("homeView").style.display="block";
 /* ---------- CATALOG ---------- */
 function renderCatalog(){
 let html="";
-products.forEach(p=>{
+window.products.forEach(p=>{
 if(p.externalUrl!="#"){
-html+=`<div class="col-12">
+html+=`
+<div class="col-12">
 <div class="card p-3">
 <h5>${p.title}</h5>
+<p>Rs ${p.price}</p>
 <a href="${p.externalUrl}" target="_blank" class="btn btn-primary">لنک کھولیں</a>
-</div></div>`;
+</div>
+</div>`;
 }
 });
 document.getElementById("catalogContainer").innerHTML=html;
@@ -119,9 +119,10 @@ document.getElementById("catalogContainer").innerHTML=html;
 /* ---------- CART ---------- */
 function renderCart(){
 let html="";
-products.forEach(p=>{
+window.products.forEach(p=>{
 if(p.externalUrl=="#"){
-html+=`<div class="card p-3 mb-2">
+html+=`
+<div class="card p-3 mb-2">
 <h5>${p.title}</h5>
 <p>Rs ${p.price}</p>
 <button onclick="addToCart(${p.id})" class="btn btn-dark">کارٹ میں شامل کریں</button>
@@ -132,7 +133,7 @@ document.getElementById("cartItems").innerHTML=html;
 }
 
 function addToCart(id){
-let product=products.find(p=>p.id==id);
+let product=window.products.find(p=>p.id==id);
 cart.push(product);
 alert("کارٹ میں شامل ہوگیا");
 }
@@ -140,23 +141,27 @@ alert("کارٹ میں شامل ہوگیا");
 /* ---------- DELIVERY ---------- */
 function updateDelivery(){
 let p=document.getElementById("province").value;
-if(p=="peshawar")delivery=100;
-else if(p=="kpk")delivery=200;
-else if(p=="other")delivery=300;
+if(p=="peshawar")delivery=window.deliveryConfig.peshawar;
+else if(p=="kpk")delivery=window.deliveryConfig.khyberPakhtunkhwa;
+else if(p=="other")delivery=window.deliveryConfig.otherProvinces;
 else if(p=="pickup")delivery=0;
-document.getElementById("deliveryText").innerHTML="ڈلیوری چارج: "+delivery;
+
+document.getElementById("deliveryText").innerHTML="ڈلیوری چارج: Rs "+delivery;
 }
 
 /* ---------- ORDER ---------- */
 function submitOrder(e){
 e.preventDefault();
 if(cart.length==0){alert("کارٹ خالی ہے");return;}
+
 let name=document.getElementById("name").value;
 let phone=document.getElementById("phone").value;
-let msg="نیا آرڈر\n";
-cart.forEach(p=>msg+=p.title+" - "+p.price+"\n");
-msg+="ڈلیوری: "+delivery;
-window.open("https://wa.me/923102890002?text="+encodeURIComponent(msg));
+
+let msg="🛍️ نیا آرڈر - SSelix\n\n";
+cart.forEach(p=>msg+=p.title+" - Rs "+p.price+"\n");
+msg+="\nڈلیوری: Rs "+delivery;
+
+window.open("https://wa.me/"+window.siteConfig.whatsappNumber+"?text="+encodeURIComponent(msg));
 }
 </script>
 
