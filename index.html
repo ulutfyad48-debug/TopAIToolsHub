@@ -3,122 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SSelix</title>
+<meta name="google-site-verification" content="u0HQvmeVKbyBWL1oaDDylFERp4bmJKpg-IT7i_U0CmE" />
+   <title>SSelix</title>
+
+<!-- GOOGLE META TAGS - OPTIMIZED -->
+<meta name="description" content="SSelix - Premium Cosmetics Store in Pakistan. Shop makeup, skincare & beauty products. Order via WhatsApp.">
+<meta name="keywords" content="SSelix, SSelix cosmetics, SSelix Pakistan, makeup store Pakistan, skincare, beauty products, cosmetics store">
+<meta name="author" content="SSelix">
+<meta name="robots" content="index, follow">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Social Preview -->
+<meta property="og:title" content="SSelix">
+<meta property="og:description" content="Premium Cosmetics Store in Pakistan">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sselix.github.io/">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000">
     
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+        /* PROFESSIONAL CSS - PREMIUM DESIGN */
         :root {
             --primary: #1a1a1a;
             --gold: #c5a059;
             --bg-soft: #f8f9fa;
             --font-ur: 'Noto Nastaliq Urdu', serif;
             --font-en: 'Plus Jakarta Sans', sans-serif;
+            --shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+            --shadow-hover: 0 20px 40px -15px rgba(0,0,0,0.15);
         }
 
-        body { font-family: var(--font-en); background: var(--bg-soft); color: var(--primary); padding-bottom: 80px; }
+        body { 
+            font-family: var(--font-en); 
+            background: var(--bg-soft); 
+            color: var(--primary); 
+            padding-bottom: 80px;
+        }
         .urdu { font-family: var(--font-ur); line-height: 1.8; }
         
-        /* Navbar */
-        .top-nav { background: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        /* Navbar - Premium */
+        .top-nav { 
+            background: white; 
+            padding: 12px 24px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
         
-        /* Header Section */
-        .brand-hero { text-align: center; padding: 40px 20px; background: linear-gradient(180deg, #fff 0%, #f1f1f1 100%); border-bottom: 1px solid #ddd; }
-        .brand-logo { width: 90px; height: 90px; object-fit: contain; border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 15px; background: white; padding: 5px; }
+        /* Hero Section - Luxury */
+        .brand-hero { 
+            text-align: center; 
+            padding: 40px 20px; 
+            background: linear-gradient(180deg, #fff 0%, #f5f5f5 100%);
+        }
         
-        .hadith-card {
-            background: #fff8e1; border-left: 4px solid var(--gold);
-            padding: 15px; margin: 20px auto; max-width: 600px;
-            border-radius: 8px; font-size: 0.9rem; text-align: center;
+        .brand-logo { 
+            width: 120px !important; 
+            height: 120px !important; 
+            object-fit: contain; 
+            border-radius: 50%; 
+            box-shadow: var(--shadow);
+            margin-bottom: 20px; 
+            background: white; 
+            padding: 8px;
+            border: 2px solid rgba(197, 160, 89, 0.2);
+        }
+        
+        /* Cosmetics Text - Replacing Hadith */
+        .cosmetics-card {
+            background: linear-gradient(135deg, #fff8e7 0%, #fff 100%);
+            border: 1px solid var(--gold-light);
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
         }
 
         /* Choice Buttons */
-        .choice-container { max-width: 500px; margin: -30px auto 0; position: relative; z-index: 10; padding: 0 15px; }
+        .choice-container { max-width: 500px; margin: -20px auto 0; position: relative; z-index: 10; padding: 0 15px; }
         .choice-btn {
             background: white; border: 2px solid var(--primary); color: var(--primary);
             padding: 20px; border-radius: 15px; width: 100%; margin-bottom: 15px;
             display: flex; align-items: center; justify-content: space-between;
-            transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); cursor: pointer;
+            transition: 0.3s; box-shadow: var(--shadow); cursor: pointer;
         }
-        .choice-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .choice-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
         .choice-btn.primary { background: var(--primary); color: white; border: none; }
         .choice-icon { font-size: 1.8rem; margin-right: 15px; }
-        .choice-text h5 { margin: 0; font-weight: 700; font-size: 1.1rem; }
-        .choice-text p { margin: 0; font-size: 0.8rem; opacity: 0.8; font-family: var(--font-ur); }
-
-        /* Catalog Mode (Initially Hidden) */
+        
+        /* Catalog Section */
         #catalogSection { display: none; padding-top: 20px; }
-        .search-box { background: white; padding: 10px; border-radius: 50px; display: flex; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .search-box { background: white; padding: 10px; border-radius: 50px; display: flex; align-items: center; box-shadow: var(--shadow); margin-bottom: 20px; }
         .search-box input { border: none; outline: none; width: 100%; padding: 5px 10px; }
         
-        .product-card { background: white; border-radius: 15px; overflow: hidden; border: none; box-shadow: 0 5px 10px rgba(0,0,0,0.05); height: 100%; transition: 0.3s; }
-        .product-card:hover { transform: translateY(-5px); }
-        .p-img-box { height: 200px; overflow: hidden; position: relative; }
-        .p-img-box img { width: 100%; height: 100%; object-fit: cover; }
-        
-        /* Ads / Quotes Placeholder Style */
-        .custom-banner-space {
-            background: #eef2f5; 
-            border: 2px dashed #cbd5e1; 
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            margin: 20px 0;
-            color: #64748b;
+        .product-card { 
+            background: white; 
+            border-radius: 16px; 
+            overflow: hidden; 
+            border: none; 
+            box-shadow: var(--shadow); 
+            height: 100%; 
+            transition: 0.3s; 
         }
-
+        .product-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: var(--shadow-hover); 
+        }
+        .p-img-box { height: 220px; overflow: hidden; position: relative; }
+        .p-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .product-card:hover .p-img-box img { transform: scale(1.05); }
+        
         /* Iframe Overlay */
         #siteOverlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: white; z-index: 9999; display: none; flex-direction: column;
         }
-        .overlay-header { padding: 10px 15px; background: var(--primary); color: white; display: flex; justify-content: space-between; align-items: center; }
+        .overlay-header { padding: 12px 20px; background: var(--primary); color: white; display: flex; justify-content: space-between; align-items: center; }
         .overlay-frame { flex: 1; border: none; width: 100%; height: 100%; }
 
-        /* Footer */
-        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: white; border-top: 1px solid #eee; display: flex; justify-content: space-around; padding: 12px 0; z-index: 100; }
-        .nav-item { text-align: center; color: #666; text-decoration: none; font-size: 0.75rem; display: flex; flex-direction: column; align-items: center; }
-        .nav-item i { font-size: 1.3rem; margin-bottom: 2px; }
-        .nav-item:hover { color: var(--gold); }
+        /* Bottom Navigation */
+        .bottom-nav { 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            background: white; 
+            border-top: 1px solid #eee; 
+            display: flex; 
+            justify-content: space-around; 
+            padding: 12px 0; 
+            z-index: 100;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.03);
+        }
+        .nav-item { 
+            text-align: center; 
+            color: #666; 
+            text-decoration: none; 
+            font-size: 0.75rem; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            transition: 0.3s;
+        }
+        .nav-item i { font-size: 1.4rem; margin-bottom: 4px; }
+        .nav-item:hover { color: var(--gold); transform: translateY(-2px); }
 
+        /* Loading Optimization */
+        img { loading: lazy; }
     </style>
 </head>
 <body>
 
     <div class="top-nav">
-        <span class="badge bg-dark">VERIFIED STORE</span>
-        <a href="help.html" class="btn btn-sm btn-outline-dark rounded-pill px-3">
+        <span class="badge bg-dark rounded-pill px-3 py-2">VERIFIED STORE</span>
+        <a href="help.html" class="btn btn-sm btn-outline-dark rounded-pill px-4">
             <i class="bi bi-question-circle"></i> Help
         </a>
     </div>
 
     <div id="homeView">
         <header class="brand-hero">
-            <img id="brandLogo" src="" class="brand-logo" alt="Logo">
-            <h2 id="brandName" class="fw-bold mb-1">Brand Name</h2>
-            <p class="text-muted small">Quality & Trust | معیاری اور بااعتماد</p>
+            <img id="brandLogo" src="" class="brand-logo" alt="SSelix Logo">
+            <h1 id="brandName" class="fw-bold mb-2" style="font-size: 2.2rem;">SSelix</h1>
+            <p class="text-muted small">Premium Cosmetics | اعلیٰ معیاری کاسمیٹکس</p>
 
-            <div class="hadith-card">
-                <p class="mb-1 urdu fw-bold" id="hUrdu">...</p>
-                <small class="text-muted fst-italic" id="hEng">...</small>
+            <!-- COSMETICS TEXT - REPLACED HADITH -->
+            <div class="cosmetics-card">
+                <p class="mb-2 urdu fw-bold" style="font-size: 1.1rem; color: var(--primary);">
+                    SSelix - آپ کا معتبر کاسمیٹک اسٹور
+                </p>
+                <p class="mb-1 small" style="color: #444;">
+                    Premium makeup, skincare & beauty products. Quality assured.
+                </p>
+                <p class="mb-0 text-muted small" style="font-size: 0.85rem;">
+                    <i class="bi bi-check-circle-fill text-success"></i> 100% Original Products
+                </p>
             </div>
         </header>
 
-        <div class="container">
-            <div class="custom-banner-space">
-                <i class="bi bi-megaphone"></i>
-                <p class="mb-0 urdu small">یہاں پر آپ کوئی بھی اعلان یا اقوالِ زریں لکھ سکتے ہیں۔</p>
-                </div>
-        </div>
         <div class="choice-container">
             <div class="choice-btn primary" onclick="openDirectShop()">
                 <div class="d-flex align-items-center">
                     <i class="bi bi-shop-window choice-icon"></i>
                     <div class="choice-text text-start">
-                        <h5>Shop Direct</h5>
-                        <p>ویب سائٹ سے آرڈر کریں</p>
+                        <h5 class="fw-bold mb-0">Shop Direct</h5>
+                        <p class="small opacity-75 mb-0 urdu">ویب سائٹ سے آرڈر کریں</p>
                     </div>
                 </div>
                 <i class="bi bi-chevron-right"></i>
@@ -128,8 +209,8 @@
                 <div class="d-flex align-items-center">
                     <i class="bi bi-grid-3x3-gap-fill choice-icon"></i>
                     <div class="choice-text text-start">
-                        <h5>Browse Catalog</h5>
-                        <p>کیٹلاگ دیکھیں (Daraz/WhatsApp)</p>
+                        <h5 class="fw-bold mb-0">Browse Catalog</h5>
+                        <p class="small opacity-75 mb-0 urdu">کیٹلاگ دیکھیں</p>
                     </div>
                 </div>
                 <i class="bi bi-chevron-right"></i>
@@ -158,9 +239,7 @@
             </div>
         </div>
 
-        <div id="productsContainer" class="row g-3">
-            </div>
-
+        <div id="productsContainer" class="row g-3"></div>
     </div>
 
     <nav class="bottom-nav">
@@ -176,12 +255,10 @@
             <i class="bi bi-file-earmark-text"></i>
             <span>Terms</span>
         </a>
-        
         <a href="#" id="devLink" target="_blank" class="nav-item">
             <i class="bi bi-grid-fill"></i>
             <span>More Apps</span>
         </a>
-
         <a href="https://ulutfyad48-debug.github.io/Bachatino/" target="_blank" class="nav-item">
             <i class="bi bi-bag-fill"></i>
             <span>Bachatino</span>
@@ -190,25 +267,23 @@
 
     <div id="siteOverlay">
         <div class="overlay-header">
-            <small class="fw-bold"> Secure View </small>
+            <small class="fw-bold"><i class="bi bi-shield-check"></i> Secure View</small>
             <button class="btn btn-sm btn-danger rounded-pill px-3" onclick="closeDirectShop()">
                 <i class="bi bi-x-lg"></i> Close
             </button>
         </div>
-        <iframe id="shopFrame" class="overlay-frame" src=""></iframe>
+        <iframe id="shopFrame" class="overlay-frame" src="" loading="lazy"></iframe>
     </div>
 
     <script src="data.js"></script>
     <script>
-        // --- Initialization ---
+        // --- ALL ORIGINAL SCRIPTS INTACT ---
         window.onload = function() {
             // Load Brand Info
             document.getElementById('brandName').innerText = siteConfig.brandName;
             document.getElementById('brandLogo').src = siteConfig.brandLogo;
-            document.getElementById('hUrdu').innerText = siteConfig.hadithUrdu;
-            document.getElementById('hEng').innerText = siteConfig.hadithEnglish;
             
-            // Restored the link functionality for More Apps
+            // Restored link functionality
             document.getElementById('devLink').href = siteConfig.developerUrl;
 
             // Load Categories
@@ -225,7 +300,6 @@
             renderProducts();
         };
 
-        // --- Navigation Logic ---
         function openDirectShop() {
             document.getElementById('siteOverlay').style.display = 'flex';
             document.getElementById('shopFrame').src = siteConfig.directShopUrl;
@@ -239,7 +313,7 @@
         function showCatalog() {
             document.getElementById('homeView').style.display = 'none';
             document.getElementById('catalogSection').style.display = 'block';
-            window.scrollTo(0,0);
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
         function goHome() {
@@ -247,7 +321,6 @@
             document.getElementById('homeView').style.display = 'block';
         }
 
-        // --- Product Logic ---
         function renderProducts() {
             const container = document.getElementById('productsContainer');
             const search = document.getElementById('searchInput').value.toLowerCase();
@@ -280,7 +353,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="product-card">
                         <div class="p-img-box">
-                            <img src="${p.image}" alt="${p.title}">
+                            <img src="${p.image}" alt="${p.title}" loading="lazy">
                             <span class="position-absolute top-0 start-0 bg-warning small px-2 py-1 fw-bold m-2 rounded">${p.category}</span>
                         </div>
                         <div class="p-3">
@@ -298,6 +371,13 @@
                 container.innerHTML += html;
             });
         }
+    </script>
+    <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(() => console.log("PWA Ready"))
+        .catch(error => console.log("PWA Error", error));
+    }
     </script>
 </body>
 </html>
