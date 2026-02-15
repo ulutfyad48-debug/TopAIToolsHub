@@ -1,308 +1,448 @@
+
 <!DOCTYPE html>
 <html lang="ur">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-site-verification" content="u0HQvmeVKbyBWL1oaDDylFERp4bmJKpg-IT7i_U0CmE" />
-   <title>SSelix</title>
+    <meta name="google-site-verification" content="u0HQvmeVKbyBWL1oaDDylFERp4bmJKpg-IT7i_U0CmE" />
+   
+    <title>SSelix | Premium Cosmetics & Beauty Store</title>
 
-<!-- GOOGLE META TAGS - OPTIMIZED -->
-<meta name="description" content="SSelix - Premium Cosmetics Store in Pakistan. Shop makeup, skincare & beauty products. Order via WhatsApp.">
-<meta name="keywords" content="SSelix, SSelix cosmetics, SSelix Pakistan, makeup store Pakistan, skincare, beauty products, cosmetics store">
-<meta name="author" content="SSelix">
-<meta name="robots" content="index, follow">
+    <meta name="description" content="SSelix is Pakistan's trusted source for premium cosmetics, makeup, skincare, and beauty products. Shop authentic brands with confidence via WhatsApp and Direct Store.">
+    <meta name="keywords" content="SSelix, Cosmetics Pakistan, Makeup Online, Skincare, Beauty Products, Authentic Makeup, SSelix Store, Foundation, Lipstick, Beauty Sale">
+    <meta name="author" content="SSelix">
+    <meta name="robots" content="index, follow">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Social Preview -->
-<meta property="og:title" content="SSelix">
-<meta property="og:description" content="Premium Cosmetics Store in Pakistan">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://sselix.github.io/">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#000000">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <meta property="og:title" content="SSelix - Enhance Your Beauty">
+    <meta property="og:description" content="Discover premium cosmetics and skincare products at SSelix. Quality you can trust.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sselix.github.io/">
+    <meta property="og:image" content="https://sselix.github.io/logo.png"> <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#b76e79"> <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        /* PROFESSIONAL CSS - PREMIUM DESIGN */
         :root {
-            --primary: #1a1a1a;
-            --gold: #c5a059;
-            --bg-soft: #f8f9fa;
+            /* Professional Cosmetic Color Palette */
+            --primary: #2d2d2d; /* Soft Black */
+            --accent: #b76e79; /* Rose Gold/Muted Pink for Cosmetics */
+            --accent-light: #fdf2f4; /* Very light pink bg */
+            --bg-soft: #fafafa;
+            --white: #ffffff;
             --font-ur: 'Noto Nastaliq Urdu', serif;
             --font-en: 'Plus Jakarta Sans', sans-serif;
-            --shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
-            --shadow-hover: 0 20px 40px -15px rgba(0,0,0,0.15);
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
-        body { 
-            font-family: var(--font-en); 
-            background: var(--bg-soft); 
-            color: var(--primary); 
-            padding-bottom: 80px;
+        body {
+            font-family: var(--font-en);
+            background: var(--bg-soft);
+            color: var(--primary);
+            padding-bottom: 90px;
+            overflow-x: hidden;
         }
-        .urdu { font-family: var(--font-ur); line-height: 1.8; }
-        
-        /* Navbar - Premium */
-        .top-nav { 
-            background: white; 
-            padding: 12px 24px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+        .urdu { font-family: var(--font-ur); line-height: 2; }
+       
+        /* Navbar */
+        .top-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
-        
-        /* Hero Section - Luxury */
-        .brand-hero { 
-            text-align: center; 
-            padding: 40px 20px; 
-            background: linear-gradient(180deg, #fff 0%, #f5f5f5 100%);
+       
+        /* Header Section - Modern Cosmetic Look */
+        .brand-hero {
+            text-align: center;
+            padding: 50px 20px 70px; /* Extra bottom padding for overlap */
+            background: linear-gradient(135deg, #fff0f3 0%, #fff 100%);
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            position: relative;
         }
-        
-        .brand-logo { 
-            width: 120px !important; 
-            height: 120px !important; 
-            object-fit: contain; 
-            border-radius: 50%; 
+       
+        .brand-logo {
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid white;
             box-shadow: var(--shadow);
-            margin-bottom: 20px; 
-            background: white; 
-            padding: 8px;
-            border: 2px solid rgba(197, 160, 89, 0.2);
+            margin-bottom: 15px;
+            background: white;
+            padding: 2px;
+            transition: transform 0.3s;
         }
-        
-        /* Cosmetics Text - Replacing Hadith */
-        .cosmetics-card {
-            background: linear-gradient(135deg, #fff8e7 0%, #fff 100%);
-            border: 1px solid var(--gold-light);
-            border-left: 4px solid var(--gold);
+        .brand-logo:hover { transform: scale(1.05); }
+
+        .brand-subtitle {
+            color: var(--accent);
+            letter-spacing: 1px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+       
+        .hadith-card {
+            background: white;
+            border-right: 4px solid var(--accent); /* Urdu direction */
             padding: 20px;
-            margin: 20px auto;
+            margin: 25px auto 10px;
             max-width: 600px;
             border-radius: 12px;
-            box-shadow: var(--shadow);
+            font-size: 0.95rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(183, 110, 121, 0.15);
         }
 
-        /* Choice Buttons */
-        .choice-container { max-width: 500px; margin: -20px auto 0; position: relative; z-index: 10; padding: 0 15px; }
+        /* Choice Buttons - Floating Cards */
+        .choice-container {
+            max-width: 550px;
+            margin: -50px auto 0;
+            position: relative;
+            z-index: 10;
+            padding: 0 20px;
+        }
         .choice-btn {
-            background: white; border: 2px solid var(--primary); color: var(--primary);
-            padding: 20px; border-radius: 15px; width: 100%; margin-bottom: 15px;
-            display: flex; align-items: center; justify-content: space-between;
-            transition: 0.3s; box-shadow: var(--shadow); cursor: pointer;
+            background: white;
+            border: 1px solid rgba(0,0,0,0.05);
+            color: var(--primary);
+            padding: 25px;
+            border-radius: 18px;
+            width: 100%;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
-        .choice-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
-        .choice-btn.primary { background: var(--primary); color: white; border: none; }
-        .choice-icon { font-size: 1.8rem; margin-right: 15px; }
-        
-        /* Catalog Section */
-        #catalogSection { display: none; padding-top: 20px; }
-        .search-box { background: white; padding: 10px; border-radius: 50px; display: flex; align-items: center; box-shadow: var(--shadow); margin-bottom: 20px; }
-        .search-box input { border: none; outline: none; width: 100%; padding: 5px 10px; }
-        
-        .product-card { 
-            background: white; 
-            border-radius: 16px; 
-            overflow: hidden; 
-            border: none; 
-            box-shadow: var(--shadow); 
-            height: 100%; 
-            transition: 0.3s; 
+        .choice-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--accent);
+            opacity: 0;
+            transition: 0.3s;
         }
-        .product-card:hover { 
-            transform: translateY(-5px); 
-            box-shadow: var(--shadow-hover); 
+        .choice-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.12); }
+        .choice-btn:hover::before { opacity: 1; }
+       
+        /* Primary Button Style */
+        .choice-btn.primary {
+            background: linear-gradient(45deg, #2d2d2d, #4a4a4a);
+            color: white;
+            border: none;
         }
-        .p-img-box { height: 220px; overflow: hidden; position: relative; }
+        .choice-btn.primary .choice-text p { color: #ddd; }
+       
+        .choice-icon { font-size: 2rem; margin-right: 20px; }
+        .choice-text h5 { margin: 0 0 5px 0; font-weight: 700; font-size: 1.2rem; }
+        .choice-text p { margin: 0; font-size: 0.85rem; opacity: 0.85; font-family: var(--font-ur); }
+
+        /* Catalog Mode */
+        #catalogSection { display: none; padding-top: 30px; animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .search-box {
+            background: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            margin-bottom: 25px;
+        }
+        .search-box input { border: none; outline: none; width: 100%; padding: 5px 10px; font-size: 1rem; }
+        .search-box i { color: var(--accent); }
+       
+        /* Product Cards */
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            height: 100%;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+       
+        .p-img-box {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            background: #f8f8f8;
+        }
         .p-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .product-card:hover .p-img-box img { transform: scale(1.05); }
-        
+       
+        .category-badge {
+            position: absolute;
+            top: 10px; left: 10px;
+            background: rgba(255,255,255,0.9);
+            color: var(--primary);
+            font-size: 0.7rem;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .price-tag {
+            color: var(--accent);
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        /* Banner Space */
+        .custom-banner-space {
+            background: var(--accent-light);
+            border: 1px dashed var(--accent);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            margin: 25px 0;
+            color: var(--accent);
+        }
+
         /* Iframe Overlay */
         #siteOverlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: white; z-index: 9999; display: none; flex-direction: column;
         }
-        .overlay-header { padding: 12px 20px; background: var(--primary); color: white; display: flex; justify-content: space-between; align-items: center; }
-        .overlay-frame { flex: 1; border: none; width: 100%; height: 100%; }
+        .overlay-header {
+            padding: 12px 15px;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .overlay-frame { flex: 1; border: none; width: 100%; height: 100%; position: relative; z-index: 2; }
+       
+        /* Loader for iframe */
+        #iframeLoader {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+        }
 
-        /* Bottom Navigation */
-        .bottom-nav { 
-            position: fixed; 
-            bottom: 0; 
-            left: 0; 
-            width: 100%; 
-            background: white; 
-            border-top: 1px solid #eee; 
-            display: flex; 
-            justify-content: space-around; 
-            padding: 12px 0; 
+        /* Footer */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: white;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0 15px;
             z-index: 100;
             box-shadow: 0 -5px 20px rgba(0,0,0,0.03);
         }
-        .nav-item { 
-            text-align: center; 
-            color: #666; 
-            text-decoration: none; 
-            font-size: 0.75rem; 
-            display: flex; 
-            flex-direction: column; 
+        .nav-item {
+            text-align: center;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.7rem;
+            display: flex;
+            flex-direction: column;
             align-items: center;
             transition: 0.3s;
         }
         .nav-item i { font-size: 1.4rem; margin-bottom: 4px; }
-        .nav-item:hover { color: var(--gold); transform: translateY(-2px); }
+        .nav-item:hover, .nav-item.active { color: var(--accent); transform: translateY(-2px); }
 
-        /* Loading Optimization */
-        img { loading: lazy; }
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #d1d1d1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
     </style>
 </head>
 <body>
 
     <div class="top-nav">
-        <span class="badge bg-dark rounded-pill px-3 py-2">VERIFIED STORE</span>
-        <a href="help.html" class="btn btn-sm btn-outline-dark rounded-pill px-4">
-            <i class="bi bi-question-circle"></i> Help
+        <span class="badge bg-dark rounded-pill px-3 py-2 fw-normal">OFFICIAL STORE</span>
+        <a href="help.html" class="text-dark text-decoration-none small">
+            <i class="bi bi-headset me-1"></i> Help Center
         </a>
     </div>
 
     <div id="homeView">
         <header class="brand-hero">
             <img id="brandLogo" src="" class="brand-logo" alt="SSelix Logo">
-            <h1 id="brandName" class="fw-bold mb-2" style="font-size: 2.2rem;">SSelix</h1>
-            <p class="text-muted small">Premium Cosmetics | اعلیٰ معیاری کاسمیٹکس</p>
+            <h2 id="brandName" class="fw-bold mb-1">SSelix</h2>
+            <p class="brand-subtitle">Premium Cosmetics & Beauty</p>
+            <p class="text-muted small">100% Authentic • Imported Brands • Best Prices</p>
 
-            <!-- COSMETICS TEXT - REPLACED HADITH -->
-            <div class="cosmetics-card">
-                <p class="mb-2 urdu fw-bold" style="font-size: 1.1rem; color: var(--primary);">
-                    SSelix - آپ کا معتبر کاسمیٹک اسٹور
-                </p>
-                <p class="mb-1 small" style="color: #444;">
-                    Premium makeup, skincare & beauty products. Quality assured.
-                </p>
-                <p class="mb-0 text-muted small" style="font-size: 0.85rem;">
-                    <i class="bi bi-check-circle-fill text-success"></i> 100% Original Products
-                </p>
+            <div class="hadith-card">
+                <p class="mb-1 urdu fw-bold" id="hUrdu">...</p>
+                <small class="text-muted fst-italic" id="hEng">...</small>
             </div>
         </header>
+
+        <div class="container">
+            <div class="custom-banner-space">
+                <i class="bi bi-stars"></i>
+                <p class="mb-0 urdu small fw-bold">بہترین کوالٹی اور مناسب قیمت ہماری پہچان ہے۔</p>
+            </div>
+        </div>
 
         <div class="choice-container">
             <div class="choice-btn primary" onclick="openDirectShop()">
                 <div class="d-flex align-items-center">
-                    <i class="bi bi-shop-window choice-icon"></i>
+                    <i class="bi bi-bag-heart-fill choice-icon"></i>
                     <div class="choice-text text-start">
-                        <h5 class="fw-bold mb-0">Shop Direct</h5>
-                        <p class="small opacity-75 mb-0 urdu">ویب سائٹ سے آرڈر کریں</p>
+                        <h5>Shop Collection</h5>
+                        <p>ویب سائٹ سے براہ راست خریدیں</p>
                     </div>
                 </div>
-                <i class="bi bi-chevron-right"></i>
+                <div class="bg-white text-dark rounded-circle p-1 d-flex">
+                    <i class="bi bi-arrow-right-short h5 m-0"></i>
+                </div>
             </div>
 
             <div class="choice-btn" onclick="showCatalog()">
                 <div class="d-flex align-items-center">
-                    <i class="bi bi-grid-3x3-gap-fill choice-icon"></i>
+                    <i class="bi bi-grid-fill choice-icon" style="color: var(--accent);"></i>
                     <div class="choice-text text-start">
-                        <h5 class="fw-bold mb-0">Browse Catalog</h5>
-                        <p class="small opacity-75 mb-0 urdu">کیٹلاگ دیکھیں</p>
+                        <h5>View Catalog</h5>
+                        <p>واٹس ایپ / دراز کیٹلاگ دیکھیں</p>
                     </div>
                 </div>
-                <i class="bi bi-chevron-right"></i>
+                <i class="bi bi-chevron-right text-muted"></i>
             </div>
         </div>
     </div>
 
     <div class="container" id="catalogSection">
-        <button class="btn btn-link text-dark text-decoration-none mb-3 px-0" onclick="goHome()">
-            <i class="bi bi-arrow-left"></i> Back to Home
-        </button>
-
-        <h4 class="fw-bold mb-3 border-start border-4 border-warning ps-2">Our Products</h4>
+        <div class="d-flex align-items-center mb-4">
+            <button class="btn btn-light rounded-circle shadow-sm me-3" onclick="goHome()">
+                <i class="bi bi-arrow-left"></i>
+            </button>
+            <h4 class="fw-bold mb-0">Our Products</h4>
+        </div>
 
         <div class="row g-2 mb-4">
             <div class="col-8">
-                <div class="search-box">
-                    <i class="bi bi-search text-muted ms-2"></i>
-                    <input type="text" id="searchInput" placeholder="Search products..." onkeyup="renderProducts()">
+                <div class="search-box mb-0">
+                    <i class="bi bi-search ms-2"></i>
+                    <input type="text" id="searchInput" placeholder="Search lipstick, makeup..." onkeyup="renderProducts()">
                 </div>
             </div>
             <div class="col-4">
-                <select class="form-select rounded-pill border-0 shadow-sm" id="catFilter" onchange="renderProducts()">
-                    <option value="All">All</option>
+                <select class="form-select rounded-pill border-0 shadow-sm h-100" id="catFilter" onchange="renderProducts()">
+                    <option value="All">All Items</option>
                 </select>
             </div>
         </div>
 
-        <div id="productsContainer" class="row g-3"></div>
+        <div id="productsContainer" class="row g-3">
+            </div>
     </div>
 
     <nav class="bottom-nav">
         <a href="contact.html" class="nav-item">
-            <i class="bi bi-envelope"></i>
+            <i class="bi bi-chat-text"></i>
             <span>Contact</span>
         </a>
         <a href="about.html" class="nav-item">
-            <i class="bi bi-person-badge"></i>
-            <span>About</span>
+            <i class="bi bi-flower1"></i> <span>About</span>
         </a>
         <a href="terms.html" class="nav-item">
-            <i class="bi bi-file-earmark-text"></i>
+            <i class="bi bi-shield-check"></i>
             <span>Terms</span>
         </a>
+       
         <a href="#" id="devLink" target="_blank" class="nav-item">
-            <i class="bi bi-grid-fill"></i>
+            <i class="bi bi-grid"></i>
             <span>More Apps</span>
         </a>
+
         <a href="https://ulutfyad48-debug.github.io/Bachatino/" target="_blank" class="nav-item">
-            <i class="bi bi-bag-fill"></i>
+            <i class="bi bi-bag"></i>
             <span>Bachatino</span>
         </a>
     </nav>
 
     <div id="siteOverlay">
         <div class="overlay-header">
-            <small class="fw-bold"><i class="bi bi-shield-check"></i> Secure View</small>
-            <button class="btn btn-sm btn-danger rounded-pill px-3" onclick="closeDirectShop()">
-                <i class="bi bi-x-lg"></i> Close
+            <div class="d-flex align-items-center">
+                <i class="bi bi-lock-fill me-2"></i>
+                <small class="fw-bold">Secure Shop</small>
+            </div>
+            <button class="btn btn-sm btn-outline-light rounded-pill px-3" onclick="closeDirectShop()">
+                Close <i class="bi bi-x-lg ms-1"></i>
             </button>
         </div>
-        <iframe id="shopFrame" class="overlay-frame" src="" loading="lazy"></iframe>
+       
+        <div id="iframeLoader">
+            <div class="spinner-border text-danger" role="status" style="width: 3rem; height: 3rem;"></div>
+            <p class="mt-2 text-muted small fw-bold">Loading Store...</p>
+        </div>
+
+        <iframe id="shopFrame" class="overlay-frame" src="" onload="hideLoader()"></iframe>
     </div>
 
-    <script src="data.js"></script>
-    <script>
-        // --- ALL ORIGINAL SCRIPTS INTACT ---
+    <script src="data.js"></script> <script>
+        // --- Initialization ---
         window.onload = function() {
-            // Load Brand Info
-            document.getElementById('brandName').innerText = siteConfig.brandName;
-            document.getElementById('brandLogo').src = siteConfig.brandLogo;
-            
-            // Restored link functionality
-            document.getElementById('devLink').href = siteConfig.developerUrl;
+            // Check if siteConfig exists to prevent errors
+            if(typeof siteConfig !== 'undefined') {
+                document.getElementById('brandName').innerText = siteConfig.brandName;
+                document.getElementById('brandLogo').src = siteConfig.brandLogo;
+                document.getElementById('hUrdu').innerText = siteConfig.hadithUrdu;
+                document.getElementById('hEng').innerText = siteConfig.hadithEnglish;
+                document.getElementById('devLink').href = siteConfig.developerUrl;
+            }
 
-            // Load Categories
-            const categories = ['All', ...new Set(products.map(p => p.category))];
-            const catSelect = document.getElementById('catFilter');
-            categories.forEach(cat => {
-                if(cat !== 'All') {
-                    let opt = document.createElement('option');
-                    opt.value = cat; opt.innerText = cat;
-                    catSelect.appendChild(opt);
-                }
-            });
-
-            renderProducts();
+            // Load Categories safely
+            if(typeof products !== 'undefined') {
+                const categories = ['All', ...new Set(products.map(p => p.category))];
+                const catSelect = document.getElementById('catFilter');
+                categories.forEach(cat => {
+                    if(cat !== 'All') {
+                        let opt = document.createElement('option');
+                        opt.value = cat; opt.innerText = cat;
+                        catSelect.appendChild(opt);
+                    }
+                });
+                renderProducts();
+            }
         };
 
+        // --- Navigation Logic ---
         function openDirectShop() {
             document.getElementById('siteOverlay').style.display = 'flex';
-            document.getElementById('shopFrame').src = siteConfig.directShopUrl;
+            document.getElementById('iframeLoader').style.display = 'flex'; // Show loader
+            if(typeof siteConfig !== 'undefined') {
+                document.getElementById('shopFrame').src = siteConfig.directShopUrl;
+            }
+        }
+
+        function hideLoader() {
+            // Hide loader when iframe finishes loading
+            document.getElementById('iframeLoader').style.display = 'none';
         }
 
         function closeDirectShop() {
@@ -313,7 +453,7 @@
         function showCatalog() {
             document.getElementById('homeView').style.display = 'none';
             document.getElementById('catalogSection').style.display = 'block';
-            window.scrollTo({top: 0, behavior: 'smooth'});
+            window.scrollTo(0,0);
         }
 
         function goHome() {
@@ -321,12 +461,15 @@
             document.getElementById('homeView').style.display = 'block';
         }
 
+        // --- Product Logic ---
         function renderProducts() {
             const container = document.getElementById('productsContainer');
             const search = document.getElementById('searchInput').value.toLowerCase();
             const filter = document.getElementById('catFilter').value;
 
             container.innerHTML = '';
+
+            if(typeof products === 'undefined') return;
 
             const filtered = products.filter(p => {
                 const matchesSearch = p.title.toLowerCase().includes(search) || p.description.toLowerCase().includes(search);
@@ -335,17 +478,20 @@
             });
 
             if(filtered.length === 0) {
-                container.innerHTML = '<div class="col-12 text-center text-muted mt-5">No products found / کوئی پروڈکٹ نہیں ملا</div>';
+                container.innerHTML = '<div class="col-12 text-center text-muted mt-5"><i class="bi bi-emoji-frown h1"></i><p>No products found / کوئی پروڈکٹ نہیں ملا</p></div>';
                 return;
             }
 
             filtered.forEach(p => {
                 let buttonsHTML = '';
                 p.links.forEach(link => {
-                    let btnColor = link.name.toLowerCase().includes('whatsapp') ? 'btn-success' : 'btn-dark';
+                    let isWhatsapp = link.name.toLowerCase().includes('whatsapp');
+                    let btnClass = isWhatsapp ? 'btn-success' : 'btn-dark';
+                    let iconClass = isWhatsapp ? 'bi-whatsapp' : link.icon;
+                   
                     buttonsHTML += `
-                        <a href="${link.url}" target="_blank" class="btn btn-sm ${btnColor} flex-grow-1 text-nowrap">
-                            <i class="bi ${link.icon}"></i> ${link.name}
+                        <a href="${link.url}" target="_blank" class="btn btn-sm ${btnClass} flex-grow-1 text-nowrap rounded-pill px-3">
+                            <i class="bi ${iconClass}"></i> ${link.name}
                         </a>`;
                 });
 
@@ -353,16 +499,16 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="product-card">
                         <div class="p-img-box">
-                            <img src="${p.image}" alt="${p.title}" loading="lazy">
-                            <span class="position-absolute top-0 start-0 bg-warning small px-2 py-1 fw-bold m-2 rounded">${p.category}</span>
+                            <img src="${p.image}" alt="${p.title}">
+                            <span class="category-badge shadow-sm">${p.category}</span>
                         </div>
-                        <div class="p-3">
+                        <div class="p-3 d-flex flex-column flex-grow-1">
                             <div class="d-flex justify-content-between align-items-start mb-2">
-                                <h6 class="fw-bold mb-0 text-truncate">${p.title}</h6>
-                                <span class="text-success fw-bold">Rs.${p.price}</span>
+                                <h6 class="fw-bold mb-0 text-truncate" style="max-width: 70%;">${p.title}</h6>
+                                <span class="price-tag">Rs.${p.price}</span>
                             </div>
-                            <p class="small text-muted urdu mb-3" style="min-height: 40px;">${p.description}</p>
-                            <div class="d-flex gap-2 flex-wrap">
+                            <p class="small text-muted urdu mb-3 flex-grow-1">${p.description}</p>
+                            <div class="d-flex gap-2 flex-wrap mt-auto">
                                 ${buttonsHTML}
                             </div>
                         </div>
@@ -372,6 +518,7 @@
             });
         }
     </script>
+
     <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/service-worker.js')
