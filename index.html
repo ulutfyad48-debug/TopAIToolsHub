@@ -1,476 +1,164 @@
 <!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="yandex-verification" content="e9ee7f4c42c5151d" />
-    
-    <!-- Google Site Verification (all kept) -->
-    <meta name="google-site-verification" content="u0HQvmeVKbyBWL1oaDDylFERp4bmJKpg-IT7i_U0CmE" />
-    <meta name="google-site-verification" content="googleeddc628b2a5b5d0a" />
-    <meta name="google-site-verification" content="y-VK8JL6U04NL6Fh-c4bOtv4bO3lQsZ_FANLe_Y50WU" />
-    <meta name="msvalidate.01" content="F7B7B8E8C8D9E9F0A1B2C3D4E5F6G7H8" />
-    
-    <title>SSelix | Premium Cosmetics & Beauty Store</title>
-    <meta name="description" content="SSelix – your trusted source for premium cosmetics, makeup, skincare in Pakistan.">
-    <meta name="keywords" content="SSelix, Cosmetics Pakistan, Makeup Online, Skincare">
-    <meta name="author" content="SSelix">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#b76e79">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SSelix Store</title>
 
-    <!-- Fonts & Bootstrap -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
-    <style>
-        :root {
-            --primary: #2d2d2d;
-            --accent: #b76e79;
-            --accent-light: #fdf2f4;
-            --accent-dark: #8b4553;
-            --font-ur: 'Noto Nastaliq Urdu', serif;
-            --font-en: 'Plus Jakarta Sans', sans-serif;
-        }
-        body {
-            font-family: var(--font-en);
-            background: linear-gradient(135deg, #fff9fa, #fef5f7);
-            color: var(--primary);
-            padding-bottom: 100px;
-        }
-        .urdu { font-family: var(--font-ur); line-height: 2.2; direction: rtl; }
-
-        /* Top Navigation */
-        .top-nav {
-            background: rgba(255,255,255,0.9);
-            backdrop-filter: blur(25px);
-            padding: 18px 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(183,110,121,0.15);
-        }
-        .logo-mini {
-            width: 45px; height: 45px; border-radius: 50%;
-            border: 3px solid var(--accent); background: white;
-        }
-        .help-link {
-            display: flex; align-items: center; gap: 8px;
-            background: rgba(183,110,121,0.1); padding: 10px 18px;
-            border-radius: 25px; text-decoration: none; color: var(--primary);
-        }
-        .help-link:hover { background: var(--accent); color: white; }
-
-        /* Hero */
-        .brand-hero {
-            text-align: center; padding: 60px 25px 80px;
-            background: linear-gradient(135deg, rgba(255,249,250,0.95), #fef5f7);
-            border-radius: 0 0 45px 45px;
-            box-shadow: 0 15px 50px rgba(183,110,121,0.12);
-        }
-        .brand-logo {
-            width: 130px; height: 130px; border-radius: 50%;
-            border: 5px solid white; box-shadow: 0 20px 60px rgba(183,110,121,0.35);
-        }
-        .brand-name {
-            font-size: 2.2rem; font-weight: 800;
-            background: linear-gradient(135deg, #2d2d2d, #b76e79);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .hadith-card {
-            background: white; border: 3px solid var(--accent);
-            padding: 30px; max-width: 680px; margin: 40px auto; border-radius: 25px;
-        }
-
-        /* Choice Buttons */
-        .choice-container { max-width: 650px; margin: 0 auto; padding: 0 25px; }
-        .choice-btn {
-            background: white; border: 2px solid rgba(183,110,121,0.15);
-            padding: 28px 25px; border-radius: 28px; width: 100%; margin-bottom: 22px;
-            display: flex; align-items: center; justify-content: space-between;
-            transition: 0.4s; cursor: pointer;
-        }
-        .choice-btn:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(183,110,121,0.2); }
-        .choice-btn.primary { background: var(--primary); color: white; border: none; }
-
-        /* Catalog & Shop sections */
-        #catalogSection, #shopSection { display: none; padding: 30px 0; }
-        .back-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
-        .back-btn {
-            width: 45px; height: 45px; border-radius: 50%;
-            background: white; border: 2px solid var(--accent);
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer;
-        }
-
-        /* Product Cards */
-        .product-card {
-            background: white; border-radius: 28px; overflow: hidden;
-            box-shadow: 0 10px 35px rgba(0,0,0,0.06); height: 100%;
-            transition: 0.4s; display: flex; flex-direction: column;
-        }
-        .p-img-box { height: 260px; position: relative; overflow: hidden; }
-        .p-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-        .product-card:hover .p-img-box img { transform: scale(1.1); }
-        .category-badge {
-            position: absolute; top: 15px; left: 15px;
-            background: white; padding: 8px 18px; border-radius: 30px;
-            font-size: 0.7rem; font-weight: 700; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .price-tag {
-            background: var(--accent); color: white; padding: 8px 15px;
-            border-radius: 25px; font-weight: 800; font-size: 1rem;
-        }
-        .product-info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
-        .product-title { font-weight: 700; font-size: 1rem; margin-bottom: 10px; }
-        .product-desc { font-size: 0.85rem; color: #666; margin-bottom: 15px; flex-grow: 1; }
-        .product-actions { margin-top: auto; }
-        .product-btn {
-            width: 100%; padding: 12px; border-radius: 30px; border: none;
-            font-weight: 600; display: flex; align-items: center; justify-content: center;
-            gap: 8px; text-decoration: none; transition: 0.3s; cursor: pointer;
-        }
-        .product-btn.whatsapp { background: #25D366; color: white; }
-        .product-btn.dark { background: var(--primary); color: white; }
-
-        /* Cart & Checkout */
-        .cart-items, .checkout-form {
-            background: white; border-radius: 25px; padding: 20px;
-            margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #f0f0f0; }
-        .qty-btn { width: 35px; height: 35px; border-radius: 50%; border: 2px solid var(--accent); background: white; cursor: pointer; }
-        .cart-summary { background: #f8f9fa; border-radius: 20px; padding: 20px; }
-        .btn-order {
-            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-            color: white; border: none; padding: 15px; border-radius: 50px;
-            font-weight: 700; width: 100%;
-        }
-
-        /* Bottom Nav */
-        .bottom-nav {
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            background: white; display: flex; justify-content: space-around;
-            padding: 15px 0; border-top: 2px solid rgba(183,110,121,0.15);
-            z-index: 999;
-        }
-        .nav-item { text-decoration: none; color: var(--primary); font-size: 0.7rem; text-align: center; }
-        .toast-notification {
-            position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%);
-            background: #2d2d2d; color: white; padding: 12px 25px; border-radius: 50px;
-            display: none; z-index: 2000;
-        }
-    </style>
+<style>
+body{font-family:sans-serif;background:#fdf2f4;padding-bottom:100px}
+.choice-btn{background:white;padding:25px;border-radius:20px;margin-bottom:20px;cursor:pointer;border:1px solid #ddd}
+.choice-btn:hover{background:#eee}
+#catalogSection,#shopSection{display:none}
+.bottom-nav{position:fixed;bottom:0;left:0;width:100%;background:white;padding:15px;text-align:center;border-top:1px solid #ddd}
+</style>
 </head>
 <body>
-    <div id="toast" class="toast-notification"></div>
 
-    <!-- Top Nav -->
-    <nav class="top-nav">
-        <a href="#" class="nav-brand" style="text-decoration:none; color:black; font-weight:bold;">
-            <img id="navLogo" src="logo.png" alt="SSelix" class="logo-mini">
-            <span>OFFICIAL STORE</span>
-        </a>
-        <a href="help.html" class="help-link">
-            <i class="bi bi-headset"></i>
-            <span>Help Center</span>
-        </a>
-    </nav>
-
-    <!-- Home View -->
-    <div id="homeView">
-        <section class="brand-hero">
-            <img id="brandLogo" src="logo.png" alt="SSelix Logo" class="brand-logo">
-            <h1 id="brandName" class="brand-name">SSelix</h1>
-            <div class="hadith-card">
-                <p id="hUrdu" class="urdu">سچا اور امانت دار تاجر (قیامت کے دن) انبیاء، صدیقین اور شہداء کے ساتھ ہوگا۔ (ترمذی: 1209)</p>
-                <p id="hEng" style="font-style:italic;">"The honest and trustworthy merchant will be with the prophets, the truthful, and the martyrs." (Tirmidhi)</p>
-            </div>
-        </section>
-
-        <div class="choice-container">
-            <!-- Shop Collection (internal cart) -->
-            <div class="choice-btn primary" onclick="openShop()">
-                <div style="text-align:right;">
-                    <h5 style="margin:0;">Shop Collection</h5>
-                    <p class="urdu" style="margin:0; font-size:0.8rem;">براہ راست خریداری کریں (کارٹ سسٹم)</p>
-                </div>
-                <i class="bi bi-bag-heart-fill" style="font-size:2rem;"></i>
-            </div>
-            <!-- View Catalog (external links) -->
-            <div class="choice-btn" onclick="showCatalog()">
-                <div style="text-align:right;">
-                    <h5 style="margin:0;">View Catalog</h5>
-                    <p class="urdu" style="margin:0; font-size:0.8rem;">ڈاراز، مارکیٹ وغیرہ سے آرڈر کریں</p>
-                </div>
-                <i class="bi bi-grid-3x3-gap-fill" style="font-size:2rem; color:var(--accent);"></i>
-            </div>
-        </div>
+<div class="container mt-5" id="homeView">
+    <div class="choice-btn" onclick="openShop()">
+        <h4>Shop Collection</h4>
+        <small>براہ راست خریداری کریں</small>
     </div>
 
-    <!-- Catalog Section (external links) -->
-    <div class="container" id="catalogSection">
-        <div class="back-header">
-            <div class="back-btn" onclick="goHome()"><i class="bi bi-arrow-right"></i></div>
-            <h4 class="section-title">کیٹلاگ / بیرونی لنکس</h4>
-        </div>
-        <div id="catalogContainer" class="row g-4"></div>
+    <div class="choice-btn" onclick="showCatalog()">
+        <h4>View Catalog</h4>
+        <small>بیرونی لنکس سے آرڈر کریں</small>
     </div>
+</div>
 
-    <!-- Shop Section (internal cart) -->
-    <div class="container" id="shopSection">
-        <div class="back-header">
-            <div class="back-btn" onclick="goHome()"><i class="bi bi-arrow-right"></i></div>
-            <h4 class="section-title">شاپنگ کارٹ</h4>
-        </div>
-        <div class="cart-items" id="cartItems">
-            <div class="empty-cart" id="emptyCart">آپ کی کارٹ خالی ہے۔</div>
-        </div>
-        <div class="cart-summary" id="cartSummary" style="display:none;">
-            <div class="summary-row"><span>سب ٹوٹل:</span> <span id="subtotal">Rs.0</span></div>
-            <div class="summary-row"><span>ڈلیوری:</span> <span id="deliveryCharge">Rs.0</span></div>
-            <div class="summary-row total"><span>ٹوٹل:</span> <span id="totalAmount">Rs.0</span></div>
-        </div>
-        <div class="checkout-form" id="checkoutForm" style="display:none;">
-            <form id="orderForm" onsubmit="submitOrder(event)">
-                <div class="form-group"><label>نام *</label> <input type="text" class="form-control" id="fullName" required></div>
-                <div class="form-group"><label>ای میل *</label> <input type="email" class="form-control" id="email" required></div>
-                <div class="form-group"><label>واٹس ایپ *</label> <input type="tel" class="form-control" id="phone" required></div>
-                <div class="form-group"><label>شہر *</label> <input type="text" class="form-control" id="city" oninput="detectProvince()" required></div>
-                <div class="form-group">
-                    <label>صوبہ *</label>
-                    <select class="form-control" id="province" onchange="updateDeliveryCharge()" required>
-                        <option value="">انتخاب کریں</option>
-                        <option value="peshawar">پشاور</option>
-                        <option value="kpk">خیبرپختونخوا (بغیر پشاور)</option>
-                        <option value="other">دوسرے صوبے</option>
-                    </select>
-                </div>
-                <div class="form-group"><label>مکمل پتہ *</label> <textarea class="form-control" id="address" required></textarea></div>
-                <button type="submit" class="btn-order">آرڈر کی تصدیق کریں</button>
-            </form>
-        </div>
+<!-- Catalog -->
+<div class="container mt-4" id="catalogSection">
+    <button class="btn btn-secondary mb-3" onclick="goHome()">واپس جائیں</button>
+    <div id="catalogContainer" class="row g-3"></div>
+</div>
+
+<!-- Shop -->
+<div class="container mt-4" id="shopSection">
+    <button class="btn btn-secondary mb-3" onclick="goHome()">واپس جائیں</button>
+
+    <div id="cartItems"></div>
+
+    <div class="mt-4">
+        <form onsubmit="submitOrder(event)">
+            <input class="form-control mb-2" id="name" placeholder="نام" required>
+            <input class="form-control mb-2" id="phone" placeholder="واٹس ایپ نمبر" required>
+            <input class="form-control mb-2" id="city" placeholder="شہر" required>
+
+            <select class="form-control mb-2" id="province" onchange="updateDelivery()">
+                <option value="">انتخاب کریں</option>
+                <option value="peshawar">پشاور (100)</option>
+                <option value="kpk">KPK (200)</option>
+                <option value="other">دیگر صوبے (300)</option>
+                <option value="pickup">Pickup (0)</option>
+            </select>
+
+            <textarea class="form-control mb-2" id="address" placeholder="مکمل پتہ"></textarea>
+
+            <div id="deliveryText"></div>
+
+            <button class="btn btn-success w-100 mt-3">واٹس ایپ پر آرڈر کریں</button>
+        </form>
     </div>
+</div>
 
-    <!-- Bottom Navigation -->
-    <nav class="bottom-nav">
-        <a href="contact.html" class="nav-item"><i class="bi bi-chat-dots-fill"></i><br>Contact</a>
-        <a href="about.html" class="nav-item"><i class="bi bi-flower1"></i><br>About</a>
-        <a href="terms.html" class="nav-item"><i class="bi bi-shield-check-fill"></i><br>Terms</a>
-        <a href="#" id="devLink" target="_blank" class="nav-item"><i class="bi bi-grid-fill"></i><br>More Apps</a>
-        <a href="https://ulutfyad48-debug.github.io/Bachatino/" target="_blank" class="nav-item"><i class="bi bi-bag-fill"></i><br>Bachatino</a>
-    </nav>
+<div class="bottom-nav">
+SSelix Official Store
+</div>
 
-    <script src="data.js"></script>
-    <script>
-        // ---------- GLOBAL VARIABLES ----------
-        let cart = [];
-        let currentDeliveryCharge = 0;
-        const deliveryConfig = window.deliveryConfig || { peshawar:100, khyberPakhtunkhwa:200, otherProvinces:300, freeDeliveryThreshold:3000 };
+<script>
+/* ---------- PRODUCTS ---------- */
+const products=[
+{id:1,title:"Foundation",price:2000,externalUrl:"#"},
+{id:2,title:"Serum",price:1200,externalUrl:"https://daraz.pk"},
+{id:3,title:"Lipstick",price:500,externalUrl:"#"}
+];
 
-        // ---------- INIT ----------
-        window.onload = function() {
-            if(typeof siteConfig !== 'undefined') {
-                document.getElementById('brandName').innerText = siteConfig.brandName;
-                document.getElementById('brandLogo').src = siteConfig.brandLogo;
-                document.getElementById('navLogo').src = siteConfig.brandLogo;
-                document.getElementById('hUrdu').innerText = siteConfig.hadithUrdu;
-                document.getElementById('hEng').innerText = siteConfig.hadithEnglish;
-                document.getElementById('devLink').href = siteConfig.developerUrl;
-            }
-            loadCart();
-            // Default view: home
-            document.getElementById('homeView').style.display = 'block';
-            document.getElementById('catalogSection').style.display = 'none';
-            document.getElementById('shopSection').style.display = 'none';
-        };
+let cart=[];
+let delivery=0;
 
-        // ---------- NAVIGATION ----------
-        function openShop() {
-            document.getElementById('homeView').style.display = 'none';
-            document.getElementById('catalogSection').style.display = 'none';
-            document.getElementById('shopSection').style.display = 'block';
-            renderCart();
-        }
-        function showCatalog() {
-            document.getElementById('homeView').style.display = 'none';
-            document.getElementById('shopSection').style.display = 'none';
-            document.getElementById('catalogSection').style.display = 'block';
-            renderCatalog();
-        }
-        function goHome() {
-            document.getElementById('catalogSection').style.display = 'none';
-            document.getElementById('shopSection').style.display = 'none';
-            document.getElementById('homeView').style.display = 'block';
-        }
+/* ---------- NAVIGATION ---------- */
+function openShop(){
+document.getElementById("homeView").style.display="none";
+document.getElementById("catalogSection").style.display="none";
+document.getElementById("shopSection").style.display="block";
+renderCart();
+}
 
-        // ---------- CATALOG (external links) ----------
-        function renderCatalog() {
-            const container = document.getElementById('catalogContainer');
-            container.innerHTML = '';
-            if(typeof products === 'undefined') return;
-            products.forEach(p => {
-                // If externalUrl exists and is not "#", show external button; otherwise show internal add-to-cart (optional)
-                const hasExternal = p.externalUrl && p.externalUrl !== '#';
-                const buttonHtml = hasExternal
-                    ? `<a href="${p.externalUrl}" target="_blank" class="product-btn whatsapp"><i class="bi bi-box-arrow-up-right"></i> آرڈر کریں</a>`
-                    : `<button onclick="addToCart(${p.id})" class="product-btn dark"><i class="bi bi-cart-plus"></i> کارٹ میں شامل کریں</button>`;
+function showCatalog(){
+document.getElementById("homeView").style.display="none";
+document.getElementById("shopSection").style.display="none";
+document.getElementById("catalogSection").style.display="block";
+renderCatalog();
+}
 
-                container.innerHTML += `
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="product-card">
-                            <div class="p-img-box">
-                                <img src="${p.image}" alt="${p.title}">
-                                <span class="category-badge">${p.category}</span>
-                            </div>
-                            <div class="product-info">
-                                <h6 class="product-title">${p.title}</h6>
-                                <p class="product-desc urdu">${p.description}</p>
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <span class="price-tag">Rs.${p.priceFormatted || p.price}</span>
-                                </div>
-                                <div class="product-actions">${buttonHtml}</div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-        }
+function goHome(){
+document.getElementById("catalogSection").style.display="none";
+document.getElementById("shopSection").style.display="none";
+document.getElementById("homeView").style.display="block";
+}
 
-        // ---------- CART FUNCTIONS ----------
-        function loadCart() {
-            const saved = localStorage.getItem('sselixCart');
-            cart = saved ? JSON.parse(saved) : [];
-        }
-        function saveCart() { localStorage.setItem('sselixCart', JSON.stringify(cart)); }
+/* ---------- CATALOG ---------- */
+function renderCatalog(){
+let html="";
+products.forEach(p=>{
+if(p.externalUrl!="#"){
+html+=`<div class="col-12">
+<div class="card p-3">
+<h5>${p.title}</h5>
+<a href="${p.externalUrl}" target="_blank" class="btn btn-primary">لنک کھولیں</a>
+</div></div>`;
+}
+});
+document.getElementById("catalogContainer").innerHTML=html;
+}
 
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
-            const existing = cart.find(i => i.id === productId);
-            if (existing) {
-                if (existing.quantity < product.stock) existing.quantity++;
-                else { showToast('اسٹاک ختم'); return; }
-            } else {
-                cart.push({ id: product.id, title: product.title, price: product.price, quantity: 1, maxStock: product.stock });
-            }
-            saveCart();
-            showToast('کارٹ میں شامل ہوگیا');
-            if (document.getElementById('shopSection').style.display === 'block') renderCart();
-        }
+/* ---------- CART ---------- */
+function renderCart(){
+let html="";
+products.forEach(p=>{
+if(p.externalUrl=="#"){
+html+=`<div class="card p-3 mb-2">
+<h5>${p.title}</h5>
+<p>Rs ${p.price}</p>
+<button onclick="addToCart(${p.id})" class="btn btn-dark">کارٹ میں شامل کریں</button>
+</div>`;
+}
+});
+document.getElementById("cartItems").innerHTML=html;
+}
 
-        function updateQuantity(productId, delta) {
-            const idx = cart.findIndex(i => i.id === productId);
-            if (idx === -1) return;
-            const newQty = cart[idx].quantity + delta;
-            if (newQty <= 0) cart.splice(idx, 1);
-            else {
-                const product = products.find(p => p.id === productId);
-                if (newQty <= product.stock) cart[idx].quantity = newQty;
-                else { showToast('اسٹاک ختم'); return; }
-            }
-            saveCart();
-            renderCart();
-        }
+function addToCart(id){
+let product=products.find(p=>p.id==id);
+cart.push(product);
+alert("کارٹ میں شامل ہوگیا");
+}
 
-        function renderCart() {
-            const cartDiv = document.getElementById('cartItems');
-            const summaryDiv = document.getElementById('cartSummary');
-            const checkoutDiv = document.getElementById('checkoutForm');
-            if (cart.length === 0) {
-                cartDiv.innerHTML = '<div class="empty-cart">آپ کی کارٹ خالی ہے۔</div>';
-                summaryDiv.style.display = 'none';
-                checkoutDiv.style.display = 'none';
-                return;
-            }
-            let html = '';
-            let subtotal = 0;
-            cart.forEach(item => {
-                const total = item.price * item.quantity;
-                subtotal += total;
-                html += `
-                    <div class="cart-item">
-                        <div><strong>${item.title}</strong><br><small>Rs.${item.price}</small></div>
-                        <div class="cart-item-quantity">
-                            <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
-                            <span class="mx-2">${item.quantity}</span>
-                            <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
-                        </div>
-                        <div>Rs.${total}</div>
-                    </div>
-                `;
-            });
-            cartDiv.innerHTML = html;
-            document.getElementById('subtotal').innerText = 'Rs.' + subtotal;
-            updateDeliveryCharge(subtotal);
-            summaryDiv.style.display = 'block';
-            checkoutDiv.style.display = 'block';
-        }
+/* ---------- DELIVERY ---------- */
+function updateDelivery(){
+let p=document.getElementById("province").value;
+if(p=="peshawar")delivery=100;
+else if(p=="kpk")delivery=200;
+else if(p=="other")delivery=300;
+else if(p=="pickup")delivery=0;
+document.getElementById("deliveryText").innerHTML="ڈلیوری چارج: "+delivery;
+}
 
-        function updateDeliveryCharge(subtotal) {
-            const province = document.getElementById('province').value;
-            let charge = 0;
-            if (province === 'peshawar') charge = deliveryConfig.peshawar;
-            else if (province === 'kpk') charge = deliveryConfig.khyberPakhtunkhwa;
-            else if (province === 'other') charge = deliveryConfig.otherProvinces;
-            if (subtotal >= deliveryConfig.freeDeliveryThreshold) charge = 0;
-            currentDeliveryCharge = charge;
-            document.getElementById('deliveryCharge').innerText = 'Rs.' + charge;
-            document.getElementById('totalAmount').innerText = 'Rs.' + (subtotal + charge);
-        }
+/* ---------- ORDER ---------- */
+function submitOrder(e){
+e.preventDefault();
+if(cart.length==0){alert("کارٹ خالی ہے");return;}
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let msg="نیا آرڈر\n";
+cart.forEach(p=>msg+=p.title+" - "+p.price+"\n");
+msg+="ڈلیوری: "+delivery;
+window.open("https://wa.me/923102890002?text="+encodeURIComponent(msg));
+}
+</script>
 
-        function detectProvince() {
-            const city = document.getElementById('city').value.toLowerCase();
-            const prov = document.getElementById('province');
-            if (city.includes('پشاور') || city.includes('peshawar')) prov.value = 'peshawar';
-            else if (['مردان','صوابی','نوشہرہ','چارسدہ','کوہاٹ','بنوں'].some(c => city.includes(c))) prov.value = 'kpk';
-            updateDeliveryCharge();
-        }
-
-        function submitOrder(e) {
-            e.preventDefault();
-            if (cart.length === 0) { showToast('کارٹ خالی ہے'); return; }
-            const name = document.getElementById('fullName').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const city = document.getElementById('city').value;
-            const province = document.getElementById('province').value;
-            const address = document.getElementById('address').value;
-            if (!province) { showToast('صوبہ منتخب کریں'); return; }
-
-            let msg = `🛍️ *نیا آرڈر - SSelix*\n\n`;
-            msg += `👤 نام: ${name}\n📧 ای میل: ${email}\n📱 واٹس ایپ: ${phone}\n🏙️ شہر: ${city}\n📍 صوبہ: ${province}\n🏠 پتہ: ${address}\n\n📦 آرڈر کی تفصیل:\n`;
-            let subtotal = 0;
-            cart.forEach(item => {
-                const total = item.price * item.quantity;
-                subtotal += total;
-                msg += `${item.title} – ${item.quantity} x Rs.${item.price} = Rs.${total}\n`;
-            });
-            msg += `\n💰 سب ٹوٹل: Rs.${subtotal}\n🚚 ڈلیوری: Rs.${currentDeliveryCharge}\n💵 ٹوٹل: Rs.${subtotal + currentDeliveryCharge}`;
-            const whatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(msg)}`;
-            window.open(whatsappUrl, '_blank');
-            cart = []; saveCart(); renderCart();
-            document.getElementById('orderForm').reset();
-            showToast('آرڈر بھیج دیا گیا');
-        }
-
-        function showToast(txt) {
-            const t = document.getElementById('toast');
-            t.innerText = txt; t.style.display = 'block';
-            setTimeout(() => t.style.display = 'none', 3000);
-        }
-    </script>
-
-    <!-- PWA Service Worker -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
-                .then(() => console.log("PWA Ready"))
-                .catch(err => console.log("PWA Error", err));
-        }
-    </script>
 </body>
 </html>
