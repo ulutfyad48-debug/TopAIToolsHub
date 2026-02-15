@@ -1,58 +1,68 @@
-/* data.js - تمام ڈیٹا اور سیٹنگز یہاں ہیں */
+// --- data.js ---
 
 const siteConfig = {
-    brandName: "SSelix",
-    brandLogo: "https://lh3.googleusercontent.com/d/1AYBfk-gmFobSzNUtiUSBVEcOdGGoEiii", // یہاں اپنا لوگو لنک لگائیں
-    
-    // وہ لنک جو ویب سائٹ کے اندر ہی کھلے گا (iframe میں)
-    directShopUrl: "https://digitalsiteshub.github.io/", 
-    
-    // Developer Link
-    developerUrl: "https://digitalsiteshub.github.io/",
-    
-    // ہیلپ واٹس ایپ نمبر
-    whatsappNumber: "+923102890002",
-
-    // حدیث مبارکہ (Urdu & English)
-    hadithUrdu: "سچا اور امانت دار تاجر (قیامت کے دن) انبیاء، صدیقین اور شہداء کے ساتھ ہوگا۔ (ترمذی: 1209)",
-    hadithEnglish: "\"The honest and trustworthy merchant will be with the prophets, the truthful, and the martyrs.\" (Tirmidhi)"
+    brandName: "SSelix Cosmetics",
+    currency: "PKR",
+    deliveryFee: 250, // عام ڈلیوری چارجز
+    freeDeliveryThreshold: 3000, // 3000 سے اوپر کی خریداری پر ڈلیوری فری
+    whatsappPhone: "923102890002", // اپنا نمبر یہاں لکھیں
+    hadithUrdu: "سچا اور امانت دار تاجر (قیامت کے دن) انبیاء، صدیقین اور شہداء کے ساتھ ہوگا۔"
 };
 
-// پروڈکٹس کی لسٹ (کیٹلاگ کے لیے)
+// پاکستان کے بڑے شہروں کی لسٹ
+const cities = [
+    "Karachi", "Lahore", "Islamabad", "Rawalpindi", "Faisalabad", 
+    "Multan", "Peshawar", "Quetta", "Sialkot", "Gujranwala", 
+    "Hyderabad", "Other"
+];
+
 const products = [
     {
         id: 1,
-        title: "Premium Leather Wallet",
-        category: "Accessories",
-        price: "1,500",
-        description: "اصلی چمڑے سے بنا پرس، کارڈز اور کیش کے لیے بہترین۔",
-        image: "https://images.unsplash.com/photo-1627123424574-181ce5171c98?w=500",
-        links: [
-            { name: "Daraz", url: "https://daraz.pk", icon: "bi-bag" },
-            { name: "WhatsApp Order", url: "https://wa.me/923001234567", icon: "bi-whatsapp" }
-        ]
+        title: "Maybelline Fit Me Foundation 128",
+        category: "Foundation",
+        price: 2850,
+        image: "https://images.unsplash.com/photo-1631730359585-38a4935cbec4?w=400",
+        description: "Matte + Poreless, Normal to Oily Skin."
     },
     {
         id: 2,
-        title: "Luxury Wrist Watch",
-        category: "Watches",
-        price: "3,200",
-        description: "واٹر پروف اور سٹینلیس سٹیل، ایک سال کی وارنٹی کے ساتھ۔",
-        image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=500",
-        links: [
-            { name: "Markaz", url: "https://markaz.app", icon: "bi-cart" },
-            { name: "WhatsApp Order", url: "https://wa.me/923001234567", icon: "bi-whatsapp" }
-        ]
+        title: "L'Oreal Infallible Foundation",
+        category: "Foundation",
+        price: 3200,
+        image: "https://images.unsplash.com/photo-1596462502278-27bfdd403cc2?w=400",
+        description: "24H Fresh Wear, High Coverage."
     },
     {
         id: 3,
-        title: "Wireless Earbuds Pro",
-        category: "Electronics",
-        price: "2,800",
-        description: "نوائس کینسلیشن اور بہترین بیٹری ٹائمنگ۔",
-        image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500",
-        links: [
-            { name: "Website", url: "#", icon: "bi-globe" }
-        ]
+        title: "Vitamin C Serum 20%",
+        category: "Skincare",
+        price: 1250,
+        image: "https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?w=400",
+        description: "Brightening & Anti-Aging Serum."
+    },
+    {
+        id: 4,
+        title: "Matte Liquid Lipstick - Red",
+        category: "Lipstick",
+        price: 450,
+        image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400",
+        description: "Long lasting matte finish."
+    },
+    {
+        id: 5,
+        title: "Makeup Brushes Set (12 pcs)",
+        category: "Tools",
+        price: 1990,
+        image: "https://images.unsplash.com/photo-1596548438137-d51ea5c83ca5?w=400",
+        description: "Professional soft bristle brushes."
+    },
+    {
+        id: 6,
+        title: "Sunscreen SPF 50",
+        category: "Skincare",
+        price: 850,
+        image: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?w=400",
+        description: "Non-greasy sun protection."
     }
 ];
