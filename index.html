@@ -426,11 +426,31 @@
 
     footer {
       text-align: center;
-      padding: 2.5rem 1rem;
+      padding: 2.5rem 1rem 1.5rem;
       color: #7d95ab;
       font-weight: 400;
       border-top: 1px solid #dde9f0;
       background: #f8fbfe;
+    }
+    .footer-contact {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .footer-contact a {
+      color: #1d6e4e;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.2s;
+    }
+    .footer-contact a:hover {
+      color: #0b3b2c;
+      transform: scale(1.05);
     }
 
     /* no product */
@@ -479,12 +499,12 @@
       <input type="tel" id="mobileNo" placeholder="0300 1234567">
     </div>
 
-    <!-- DELIVERY – no default preselected ! -->
+    <!-- DELIVERY – updated pickup location -->
     <div class="field">
       <label>Delivery method *</label>
       <select id="deliverySelect">
         <option value="" disabled selected>— Choose delivery option —</option>
-        <option value="pickup">📦 Pickup (free) – Main Branch</option>
+        <option value="pickup">📦 Pickup (free) – Tarnab Farm, Peshawar (near Sabir Hussain Masjid)</option>
         <option value="peshawar">🚚 Peshawar city – Rs 150</option>
         <option value="kpk">🛵 KPK (other cities) – Rs 250</option>
         <option value="other">🚛 Other provinces – Rs 400</option>
@@ -511,6 +531,10 @@
 
 <footer>
   <p>© 2024 SSelix — premium essentials · fresh & fast</p>
+  <div class="footer-contact">
+    <a href="tel:+923102890002"><i class="fas fa-phone-alt"></i> +92 310 2890002</a>
+    <a href="mailto:sselix418@gmail.com"><i class="fas fa-envelope"></i> sselix418@gmail.com</a>
+  </div>
 </footer>
 
 <script>
@@ -703,7 +727,8 @@
       let message = `🛒 *SSelix order*\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n\n📦 *Items:*\n${itemsList}\n-------------------\nSubtotal: Rs ${calc.subtotal}\nDelivery: ${deliveryText}\n💰 *TOTAL: Rs ${calc.total}*\n`;
 
       if (delivery === 'pickup') {
-        message += `📍 *Pickup location:* Main Branch, SSelix Center\n`;
+        // Updated pickup location with exact English description
+        message += `📍 *Pickup location:* Tarnab Farm, Peshawar (near Sabir Hussain Masjid) – we will guide you to exact spot upon arrival.\n`;
       } else {
         message += `🏠 *Delivery address:* ${address}\n`;
       }
