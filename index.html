@@ -3,430 +3,726 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SSelix – Advanced Shopping</title>
-  
+  <title>SSelix · category store</title>
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  
   <style>
-    /* --- General Styling (SSelix Advanced Design) --- */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    body { background: #f4f6fa; color: #1e2b3c; line-height: 1.6; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
 
-    /* Sticky Glassmorphism Header */
-    header {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-      padding: 1rem 2rem; position: sticky; top: 0; z-index: 100;
-      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.03); border-bottom: 1px solid rgba(0,0,0,0.05);
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    body {
+      background: #f2f5f9;
+      color: #13294e;
+      line-height: 1.5;
+    }
+
+    /* premium glass header */
+    .header {
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 0.9rem 2.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 120;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      border-bottom: 1px solid rgba(0,40,30,0.08);
+      box-shadow: 0 6px 28px -12px rgba(0,50,30,0.1);
     }
 
     .logo {
-      font-weight: 800; font-size: 1.8rem; letter-spacing: -0.03em;
-      background: linear-gradient(135deg, #0b3b2c, #1b6b4f);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      display: flex; align-items: center; gap: 10px; cursor: pointer;
+      font-weight: 800;
+      font-size: 2rem;
+      letter-spacing: -0.03em;
+      background: linear-gradient(140deg, #0b3328, #1d6e4e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .logo i { background: linear-gradient(135deg, #0b3b2c, #1b6b4f); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2rem; }
-
-    .search-wrapper { flex: 1; max-width: 450px; position: relative; }
-    .search-wrapper i { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #7c8896; font-size: 1.1rem; pointer-events: none; }
-    .search-box {
-      width: 100%; padding: 1rem 1rem 1rem 3.5rem; border: 1px solid #e2e8f0; border-radius: 60px;
-      font-size: 1rem; background: white; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-    }
-    .search-box:focus { outline: none; border-color: #1b6b4f; box-shadow: 0 8px 24px rgba(27,107,79,0.12); transform: translateY(-2px); }
-
-    /* Product Grid */
-    .products {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem; padding: 2.5rem; max-width: 1400px; margin: 0 auto;
+    .logo i {
+      background: #0b3328;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2.2rem;
     }
 
-    /* Card – Modern Neumorphism / Soft Shadow */
-    .card {
-      background: white; border-radius: 24px; padding: 1.5rem;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04), 0 5px 15px rgba(0, 0, 0, 0.02);
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
-      display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.8);
-      position: relative; overflow: hidden;
+    /* search */
+    .search-group {
+      flex: 1;
+      max-width: 460px;
+      position: relative;
     }
-    .card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 25px 50px -12px rgba(0,40,20,0.15); z-index: 2; }
+    .search-group i {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #6f7e93;
+      font-size: 1.2rem;
+      pointer-events: none;
+    }
+    .search-input {
+      width: 100%;
+      padding: 1rem 1.2rem 1rem 3.5rem;
+      border: 1.5px solid #e0e8f0;
+      border-radius: 48px;
+      font-size: 1rem;
+      background: white;
+      transition: all 0.2s ease;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.02);
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: #1d6e4e;
+      box-shadow: 0 8px 22px -10px #1d6e4e;
+    }
 
-    .card img {
-      width: 100%; height: 220px; object-fit: cover; border-radius: 18px;
-      background: #f8fafc; margin-bottom: 1.2rem; border: 1px solid #f1f5f9;
+    /* category filter bar (unique chips) */
+    .category-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      padding: 1.25rem 2.5rem 0.5rem 2.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .cat-chip {
+      background: white;
+      border: 1px solid #dee7ef;
+      padding: 0.6rem 1.6rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #2b455b;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.02);
+      letter-spacing: -0.01em;
+    }
+    .cat-chip i {
+      margin-right: 6px;
+      font-size: 0.85rem;
+      color: #1d6e4e;
+    }
+    .cat-chip.active {
+      background: #1d6e4e;
+      border-color: #1d6e4e;
+      color: white;
+      box-shadow: 0 10px 18px -8px #1b6b4f;
+    }
+    .cat-chip.active i {
+      color: white;
+    }
+    .cat-chip:hover {
+      background: #ecf7f2;
+      border-color: #9bc0b0;
+      transform: translateY(-2px);
     }
 
-    .card h4 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.4rem; color: #1a2b3e; letter-spacing: -0.02em; }
-    .card p { color: #64748b; font-size: 0.95rem; margin-bottom: 0.8rem; line-height: 1.5; flex-grow: 1; }
-    .price { font-weight: 800; font-size: 1.5rem; color: #0b3b2c; margin: 0.5rem 0 1rem; letter-spacing: -0.03em; }
+    /* product grid – clean neumorph twist */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      padding: 2rem 2.5rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
 
-    /* Quantity Selector – Sleek Pill Shape */
-    .qty {
-      display: flex; justify-content: space-between; align-items: center;
-      background: #f8fafc; border-radius: 50px; padding: 6px; margin-top: auto;
-      border: 1px solid #e2e8f0;
+    .product-card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 1.5rem 1.4rem;
+      box-shadow: 0 20px 35px -12px rgba(0,40,30,0.08), 0 2px 8px rgba(0,0,0,0.02);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(255,255,255,0.6);
+      position: relative;
     }
-    .qty button {
-      width: 42px; height: 42px; border: none; background: white; color: #1e2b3c;
-      font-size: 1.4rem; font-weight: 600; border-radius: 50%; cursor: pointer;
-      transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      display: flex; align-items: center; justify-content: center;
+    .product-card:hover {
+      transform: translateY(-10px) scale(1.01);
+      box-shadow: 0 30px 50px -18px #0b3b2c40;
     }
-    .qty button:hover { background: #0b3b2c; color: white; transform: scale(1.1); box-shadow: 0 6px 15px rgba(11, 59, 44, 0.3); }
-    .qty span { font-weight: 700; font-size: 1.2rem; min-width: 40px; text-align: center; color: #334155; }
 
-    /* Floating Cart Button – Premium Gradient */
-    .cart-float {
-      position: fixed; bottom: 30px; right: 30px;
-      background: linear-gradient(135deg, #0b3b2c, #16a34a);
-      color: white; width: 75px; height: 75px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2rem; box-shadow: 0 15px 35px -5px rgba(11, 59, 44, 0.5);
-      cursor: pointer; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      border: 4px solid rgba(255,255,255,0.2); z-index: 99;
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 20px;
+      background: #f0f4fa;
+      margin-bottom: 1.2rem;
+      border: 1px solid #ecf3f0;
     }
-    .cart-float:hover { transform: scale(1.1) rotate(-5deg); box-shadow: 0 20px 45px -5px rgba(11, 59, 44, 0.6); }
+
+    .product-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #13294e;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+    }
+
+    .product-category {
+      display: inline-block;
+      background: #e7f0ec;
+      padding: 0.25rem 1rem;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #1b6b4f;
+      margin-bottom: 0.7rem;
+      border: 1px solid #c6e0d4;
+      width: fit-content;
+    }
+
+    .product-desc {
+      color: #4a5d6e;
+      font-size: 0.9rem;
+      margin-bottom: 0.8rem;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+
+    .price {
+      font-weight: 800;
+      font-size: 1.7rem;
+      color: #0b3b2c;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .qty-pill {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f4f8fc;
+      border-radius: 48px;
+      padding: 5px;
+      border: 1px solid #dae6f0;
+      margin-top: 8px;
+    }
+    .qty-pill button {
+      width: 44px;
+      height: 44px;
+      border: none;
+      background: white;
+      border-radius: 50%;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #1b3b2c;
+      cursor: pointer;
+      box-shadow: 0 5px 14px rgba(0,0,0,0.03);
+      transition: 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .qty-pill button:hover {
+      background: #1d6e4e;
+      color: white;
+      transform: scale(1.1);
+      box-shadow: 0 8px 18px #1d6e4e70;
+    }
+    .qty-pill span {
+      font-weight: 700;
+      font-size: 1.3rem;
+      min-width: 40px;
+      text-align: center;
+      color: #153243;
+    }
+
+    /* floating cart - elegant */
+    .float-cart {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      background: linear-gradient(145deg, #0c3f2f, #187750);
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      color: white;
+      box-shadow: 0 28px 45px -10px #0b3b2c;
+      cursor: pointer;
+      transition: 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+      border: 4px solid rgba(255,255,255,0.2);
+      z-index: 99;
+    }
+    .float-cart:hover {
+      transform: scale(1.12) rotate(-3deg);
+      background: #1d6e4e;
+    }
     .cart-badge {
-      position: absolute; top: 0; right: 0; background: #ef4444; color: white;
-      width: 28px; height: 28px; font-size: 13px; font-weight: bold; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; border: 2px solid white;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2); transform: translate(5px, -5px); opacity: 0; transition: 0.3s;
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: #dc2626;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      font-size: 0.85rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid white;
+      transform: translate(6px, -6px);
+      opacity: 0;
+      transition: 0.2s;
+      box-shadow: 0 4px 12px black(0,0,0,0.2);
     }
 
-    /* Popup Modal – Elegant & Frosted */
+    /* POPUP – no default delivery, crisp */
     .popup-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px);
-      display: none; justify-content: center; align-items: center; z-index: 200;
-      opacity: 0; transition: opacity 0.3s ease;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(20, 30, 40, 0.6);
+      backdrop-filter: blur(8px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 220;
+      opacity: 0;
+      transition: opacity 0.25s;
     }
-    .popup-overlay.active { opacity: 1; }
-    
-    .popup-box {
-      background: white; width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto;
-      padding: 2.5rem; border-radius: 32px; box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.25);
-      animation: popUpAnim 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative;
+    .popup-overlay.active {
+      opacity: 1;
     }
-    @keyframes popUpAnim { from { transform: scale(0.9) translateY(20px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
+    .popup-card {
+      background: white;
+      width: 94%;
+      max-width: 560px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2.2rem 2.5rem;
+      border-radius: 42px;
+      box-shadow: 0 50px 90px -30px #05150f;
+      animation: slidePop 0.35s ease-out;
+    }
+    @keyframes slidePop {
+      0% { opacity: 0; transform: scale(0.92) translateY(25px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
 
-    .popup-box h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem; color: #0f172a; text-align: center; letter-spacing: -0.03em; }
-
-    .input-group { margin-bottom: 1.2rem; }
-    .input-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: #64748b; font-size: 0.9rem; margin-left: 10px; }
-    
-    .popup-box input, .popup-box select, .popup-box textarea {
-      width: 100%; padding: 1.1rem 1.4rem; border: 2px solid #f1f5f9; border-radius: 20px;
-      font-size: 1rem; background: #f8fafc; transition: 0.2s ease; outline: none;
-      color: #334155; font-weight: 500;
-    }
-    .popup-box textarea { resize: vertical; min-height: 100px; line-height: 1.5; }
-    .popup-box input:focus, .popup-box select:focus, .popup-box textarea:focus {
-      border-color: #0b3b2c; background: white; box-shadow: 0 0 0 4px rgba(11, 59, 44, 0.1);
+    .popup-card h3 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 1.8rem;
+      color: #102b20;
+      text-align: center;
     }
 
-    .total-row {
-      background: #ecfdf5; border-radius: 20px; padding: 1.5rem; margin: 2rem 0;
-      display: flex; justify-content: space-between; align-items: center;
-      border: 1px solid #d1fae5; color: #065f46;
+    .field {
+      margin-bottom: 1.4rem;
     }
-    .total-row span:first-child { font-size: 1.1rem; font-weight: 600; }
-    .total-row span:last-child { font-size: 1.8rem; font-weight: 800; }
-
-    .btn-checkout {
-      width: 100%; padding: 1.2rem; border: none; border-radius: 20px;
-      font-size: 1.1rem; font-weight: 700; cursor: pointer; display: flex;
-      align-items: center; justify-content: center; gap: 12px; color: white;
-      transition: all 0.3s; margin-bottom: 1rem; position: relative; overflow: hidden;
+    .field label {
+      display: block;
+      font-weight: 600;
+      color: #3f5568;
+      margin-bottom: 0.3rem;
+      margin-left: 0.5rem;
+      font-size: 0.9rem;
     }
-    .btn-wa { background: linear-gradient(135deg, #25D366, #16a34a); box-shadow: 0 10px 25px -5px rgba(37, 211, 102, 0.4); }
-    .btn-wa:hover { transform: translateY(-3px); box-shadow: 0 15px 35px -5px rgba(37, 211, 102, 0.5); }
-    
-    .btn-email { background: linear-gradient(135deg, #3b82f6, #2563eb); box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4); }
-    .btn-email:hover { transform: translateY(-3px); box-shadow: 0 15px 35px -5px rgba(59, 130, 246, 0.5); }
-
-    .btn-cancel {
-      background: transparent; color: #94a3b8; width: 100%; padding: 1rem; border: none;
-      font-weight: 600; cursor: pointer; transition: 0.2s; border-radius: 15px;
+    .popup-card input, .popup-card select, .popup-card textarea {
+      width: 100%;
+      padding: 1.1rem 1.5rem;
+      border: 2px solid #e3edf2;
+      border-radius: 28px;
+      font-size: 0.95rem;
+      background: #f9fcff;
+      transition: 0.2s;
+      outline: none;
+      color: #1b2f40;
+      font-weight: 500;
     }
-    .btn-cancel:hover { background: #f1f5f9; color: #64748b; }
+    .popup-card select {
+      appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%233f5568" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 1.5rem center;
+      background-size: 1.2rem;
+    }
+    .popup-card textarea {
+      min-height: 100px;
+      border-radius: 28px;
+    }
+    .popup-card input:focus, .popup-card select:focus, .popup-card textarea:focus {
+      border-color: #1d6e4e;
+      background: white;
+      box-shadow: 0 0 0 5px #bbe6d4;
+    }
 
-    /* Footer */
-    footer { text-align: center; padding: 3rem 1rem; color: #94a3b8; font-size: 0.9rem; margin-top: 2rem; }
+    .total-amount-panel {
+      background: #e6f7f0;
+      border-radius: 30px;
+      padding: 1.5rem 1.8rem;
+      margin: 2rem 0 1.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #bde0d1;
+      color: #0b4a33;
+    }
+    .total-amount-panel span:first-child {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .total-amount-panel span:last-child {
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+    .btn-wa, .btn-email {
+      border: none;
+      padding: 1.2rem;
+      border-radius: 40px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: white;
+      cursor: pointer;
+      transition: 0.25s;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .btn-wa { background: linear-gradient(135deg, #1faa5b, #138547); box-shadow: 0 16px 32px -10px #1e9b58; }
+    .btn-email { background: linear-gradient(135deg, #3f6ef0, #254fbb); box-shadow: 0 16px 32px -10px #2c62d4; }
+    .btn-wa:hover, .btn-email:hover { transform: translateY(-4px); filter: brightness(1.05); }
+
+    .btn-cancel-pop {
+      background: transparent;
+      border: none;
+      color: #788ea2;
+      font-weight: 600;
+      padding: 1rem;
+      border-radius: 40px;
+      cursor: pointer;
+    }
+    .btn-cancel-pop:hover { background: #ecf2f9; color: #254150; }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: #7d95ab;
+      font-weight: 400;
+      border-top: 1px solid #dde9f0;
+      background: #f8fbfe;
+    }
+
+    /* no product */
+    .no-products {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 4rem;
+      color: #829bb1;
+      font-weight: 500;
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="logo"><i class="fas fa-layer-group"></i> SSelix</div>
-  <div class="search-wrapper">
+<header class="header">
+  <div class="logo"><i class="fas fa-crown"></i> SSelix</div>
+  <div class="search-group">
     <i class="fas fa-search"></i>
-    <input type="text" id="searchInput" class="search-box" placeholder="Search products...">
+    <input type="text" id="searchField" class="search-input" placeholder="Search for 'juice', 'rice'...">
   </div>
 </header>
 
-<div class="products" id="productContainer">
-  </div>
+<!-- category chips (dynamic) -->
+<div class="category-bar" id="categoryContainer"></div>
 
-<div class="cart-float" onclick="openCart()">
-  <i class="fas fa-shopping-bag"></i>
-  <span id="cartBadge" class="cart-badge">0</span>
+<!-- products grid -->
+<div class="products-grid" id="productGrid"></div>
+
+<!-- cart float -->
+<div class="float-cart" onclick="openOrderPopup()">
+  <i class="fas fa-bag-shopping"></i>
+  <span class="cart-badge" id="cartCounter">0</span>
 </div>
 
-<div class="popup-overlay" id="popup">
-  <div class="popup-box">
-    <h3>Complete Order</h3>
-    
-    <div class="input-group">
-      <label>Full Name</label>
-      <input type="text" id="name" placeholder="John Doe">
+<!-- popup (order) -->
+<div class="popup-overlay" id="orderPopup">
+  <div class="popup-card">
+    <h3>✔️ complete order</h3>
+
+    <div class="field">
+      <label>Full name</label>
+      <input type="text" id="fullName" placeholder="M. Ahmed">
     </div>
-    
-    <div class="input-group">
+    <div class="field">
       <label>Phone / WhatsApp</label>
-      <input type="tel" id="phone" placeholder="0300 1234567">
+      <input type="tel" id="mobileNo" placeholder="0300 1234567">
     </div>
-    
-    <div class="input-group">
-      <label>Delivery Area (Calculates Cost)</label>
-      <select id="delivery">
-        <option value="pickup">Pickup (Free) — 📍 Main Branch</option>
-        <option value="peshawar">Peshawar City — Rs 150</option>
-        <option value="kpk">KPK (Other Cities) — Rs 250</option>
-        <option value="other">Other Province — Rs 400</option>
+
+    <!-- DELIVERY – no default preselected ! -->
+    <div class="field">
+      <label>Delivery method *</label>
+      <select id="deliverySelect">
+        <option value="" disabled selected>— Choose delivery option —</option>
+        <option value="pickup">📦 Pickup (free) – Main Branch</option>
+        <option value="peshawar">🚚 Peshawar city – Rs 150</option>
+        <option value="kpk">🛵 KPK (other cities) – Rs 250</option>
+        <option value="other">🚛 Other provinces – Rs 400</option>
       </select>
     </div>
 
-    <div class="input-group">
-      <label>Complete Address for Rider</label>
-      <textarea id="fullAddress" placeholder="Enter House #, Street #, Colony name, Nearby landmark..."></textarea>
+    <div class="field">
+      <label>Full address (required if delivery)</label>
+      <textarea id="addressField" placeholder="House, street, landmark ..."></textarea>
     </div>
 
-    <div class="total-row">
-      <span>Total Amount</span>
-      <span id="totalAmount">Rs 0</span>
+    <div class="total-amount-panel" id="totalPanel">
+      <span>Total</span>
+      <span id="totalAmountSpan">Rs 0</span>
     </div>
 
-    <button class="btn-checkout btn-wa" onclick="sendOrder('whatsapp')">
-      <i class="fab fa-whatsapp"></i> Confirm via WhatsApp
-    </button>
-
-    <button class="btn-checkout btn-email" onclick="sendOrder('email')">
-      <i class="fas fa-envelope"></i> Confirm via Email
-    </button>
-
-    <button class="btn-cancel" onclick="closeCart()">Cancel & Continue Shopping</button>
+    <div class="action-buttons">
+      <button class="btn-wa" onclick="submitOrder('whatsapp')"><i class="fab fa-whatsapp"></i> WhatsApp order</button>
+      <button class="btn-email" onclick="submitOrder('email')"><i class="fas fa-envelope"></i> Email order</button>
+      <button class="btn-cancel-pop" onclick="closePopup()">← Continue shopping</button>
+    </div>
   </div>
 </div>
 
 <footer>
-  <p>© 2024 SSelix Stores • Fast Delivery & Premium Quality</p>
+  <p>© 2024 SSelix — premium essentials · fresh & fast</p>
 </footer>
 
 <script>
-  /* ======================================================
-     SETTINGS (Updated)
-  ====================================================== */
-  const WHATSAPP_NUMBER = "923102890002"; 
-  const MERCHANT_EMAIL = "sselix418@gmail.com"; 
-  const PICKUP_LOCATION = "Main Branch, SSelix Center";
+  (function() {
+    // ----- PRODUCT DATA (with categories) -----
+    const PRODUCTS = [
+      { id: 1, title: "Apple Juice", category: "beverages", catLabel: "🥤 Beverages", description: "100% organic, fresh pressed (1L)", price: 250, image: "https://via.placeholder.com/400/ccf2e0/1e3b2c?text=🍎+Juice" },
+      { id: 2, title: "Basmati Rice", category: "grains", catLabel: "🌾 Grains", description: "Premium Super Kernel (1kg)", price: 350, image: "https://via.placeholder.com/400/f2e6cc/2e4a3a?text=🍚+Basmati" },
+      { id: 3, title: "Cooking Oil", category: "oil", catLabel: "🧴 Oil", description: "Cholesterol‑free (1L pouch)", price: 500, image: "https://via.placeholder.com/400/fae5d1/3d4c2f?text=🫒+Oil" },
+      { id: 4, title: "Detergent Pack", category: "household", catLabel: "🧺 Household", description: "High power stain remover (500g)", price: 150, image: "https://via.placeholder.com/400/e0f0f0/234455?text=🧼+Detergent" },
+      { id: 5, title: "Green Tea", category: "tea", catLabel: "🍵 Tea", description: "Authentic Peshawar green (200g)", price: 120, image: "https://via.placeholder.com/400/d3e6d3/234d3b?text=🍃+Green+Tea" },
+      { id: 6, title: "Mixed Nuts", category: "snacks", catLabel: "🥜 Snacks", description: "Roasted almonds, walnuts, cashews (250g)", price: 850, image: "https://via.placeholder.com/400/edd7b0/2d4a2b?text=🥨+Nuts" },
+      { id: 7, title: "Orange Juice", category: "beverages", catLabel: "🥤 Beverages", description: "Fresh squeezed, no sugar (1L)", price: 280, image: "https://via.placeholder.com/400/ffdfb3/332211?text=🍊+Orange" },
+      { id: 8, title: "Whole Wheat Flour", category: "grains", catLabel: "🌾 Grains", description: "Organic chakki fresh (2kg)", price: 290, image: "https://via.placeholder.com/400/eadac6/232b1d?text=🌾+Flour" }
+    ];
 
-  /* ======================================================
-     PRODUCT DATA
-  ====================================================== */
-  const PRODUCTS = [
-    {
-      id: 1,
-      title: "Apple Juice",
-      description: "100% Organic, fresh pressed juice (1 Liter)",
-      price: 250,
-      image: "https://via.placeholder.com/400?text=Apple+Juice"
-    },
-    {
-      id: 2,
-      title: "Basmati Rice",
-      description: "Premium Super Kernel Basmati (1kg Pack)",
-      price: 350,
-      image: "https://via.placeholder.com/400?text=Basmati+Rice"
-    },
-    {
-      id: 3,
-      title: "Cooking Oil",
-      description: "Cholesterol free healthy oil (1 Liter Pouch)",
-      price: 500,
-      image: "https://via.placeholder.com/400?text=Cooking+Oil"
-    },
-    {
-      id: 4,
-      title: "Detergent Pack",
-      description: "High power stain remover (500g)",
-      price: 150,
-      image: "https://via.placeholder.com/400?text=Detergent"
-    },
-    {
-      id: 5,
-      title: "Green Tea",
-      description: "Authentic Peshawar Green Tea (200g)",
-      price: 120,
-      image: "https://via.placeholder.com/400?text=Green+Tea"
-    },
-    {
-      id: 6,
-      title: "Mixed Nuts",
-      description: "Roasted almonds, walnuts & cashews (250g)",
-      price: 850,
-      image: "https://via.placeholder.com/400?text=Dry+Fruits"
-    }
-  ];
+    // delivery fee mapping
+    const DELIVERY_FEES = { pickup:0, peshawar:150, kpk:250, other:400 };
 
-  /* ======================================================
-     APP LOGIC
-  ====================================================== */
-  const DELIVERY_CHARGES = { pickup: 0, peshawar: 150, kpk: 250, other: 400 };
-  let cart = {}; 
+    // ---------- state ----------
+    let cart = {};               // { id: quantity }
+    let activeCategory = 'all';
+    let currentSearch = '';
 
-  // --- Display Products ---
-  function renderProducts(list) {
-    const container = document.getElementById("productContainer");
-    container.innerHTML = "";
-    
-    if(list.length === 0) {
-      container.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem; color:#94a3b8;"><h4>No products found</h4></div>`;
-      return;
+    // ---------- helpers ----------
+    function updateCartBadge() {
+      const totalQty = Object.values(cart).reduce((s, v) => s + v, 0);
+      const badge = document.getElementById('cartCounter');
+      badge.innerText = totalQty;
+      badge.style.opacity = totalQty > 0 ? '1' : '0';
     }
 
-    list.forEach(p => {
-      const qty = cart[p.id] || 0;
-      container.innerHTML += `
-      <div class="card">
-        <img src="${p.image}" alt="${p.title}" loading="lazy">
-        <h4>${p.title}</h4>
-        <p>${p.description}</p>
-        <div class="price">Rs ${p.price}</div>
-        
-        <div class="qty">
-          <button onclick="updateQty(${p.id}, -1)">-</button>
-          <span id="qty-${p.id}">${qty}</span>
-          <button onclick="updateQty(${p.id}, 1)">+</button>
-        </div>
-      </div>
-      `;
+    // get filtered products by category + search
+    function getFilteredProducts() {
+      let filtered = PRODUCTS;
+      if (activeCategory !== 'all') {
+        filtered = filtered.filter(p => p.category === activeCategory);
+      }
+      if (currentSearch.trim() !== '') {
+        const term = currentSearch.toLowerCase();
+        filtered = filtered.filter(p => p.title.toLowerCase().includes(term) || p.description.toLowerCase().includes(term));
+      }
+      return filtered;
+    }
+
+    // render products + categories
+    function renderUI() {
+      renderCategoryChips();
+      const filtered = getFilteredProducts();
+      renderProductGrid(filtered);
+    }
+
+    function renderCategoryChips() {
+      // extract unique categories from PRODUCTS
+      const catMap = new Map(); // catKey -> { label, count }
+      PRODUCTS.forEach(p => {
+        if (!catMap.has(p.category)) {
+          catMap.set(p.category, { label: p.catLabel, count: 0 });
+        }
+        catMap.get(p.category).count++;
+      });
+
+      let html = `<div class="cat-chip ${activeCategory === 'all' ? 'active' : ''}" data-cat="all"><i class="fas fa-grid-2"></i> All (${PRODUCTS.length})</div>`;
+      for (let [key, val] of catMap.entries()) {
+        html += `<div class="cat-chip ${activeCategory === key ? 'active' : ''}" data-cat="${key}">${val.label} (${val.count})</div>`;
+      }
+      document.getElementById('categoryContainer').innerHTML = html;
+
+      // attach listeners
+      document.querySelectorAll('.cat-chip').forEach(chip => {
+        chip.addEventListener('click', (e) => {
+          const cat = chip.dataset.cat;
+          activeCategory = cat;
+          renderUI();  // re-render chips + products
+        });
+      });
+    }
+
+    function renderProductGrid(products) {
+      const grid = document.getElementById('productGrid');
+      if (!products.length) {
+        grid.innerHTML = `<div class="no-products"><i class="fas fa-box-open" style="font-size:2.5rem; opacity:0.5;"></i><p style="margin-top:1rem;">No matching products</p></div>`;
+        return;
+      }
+
+      let cards = '';
+      products.forEach(p => {
+        const qty = cart[p.id] || 0;
+        cards += `
+          <div class="product-card">
+            <img src="${p.image}" alt="${p.title}" loading="lazy">
+            <span class="product-category">${p.catLabel}</span>
+            <div class="product-title">${p.title}</div>
+            <div class="product-desc">${p.description}</div>
+            <div class="price">Rs ${p.price}</div>
+            <div class="qty-pill">
+              <button onclick="adjustQty(${p.id}, -1)">−</button>
+              <span id="qty-${p.id}">${qty}</span>
+              <button onclick="adjustQty(${p.id}, 1)">+</button>
+            </div>
+          </div>
+        `;
+      });
+      grid.innerHTML = cards;
+    }
+
+    // ----- global functions -----
+    window.adjustQty = (id, delta) => {
+      if (!cart[id]) cart[id] = 0;
+      cart[id] = Math.max(0, cart[id] + delta);
+      document.getElementById(`qty-${id}`).innerText = cart[id];
+      updateCartBadge();
+    };
+
+    // search
+    document.getElementById('searchField').addEventListener('input', (e) => {
+      currentSearch = e.target.value;
+      renderUI(); // re-render with filter
     });
-  }
 
-  // --- Cart Management ---
-  window.updateQty = (id, change) => {
-    if(!cart[id]) cart[id] = 0;
-    cart[id] += change;
-    if(cart[id] < 0) cart[id] = 0;
-    
-    // Update UI
-    document.getElementById(`qty-${id}`).innerText = cart[id];
-    updateCartIcon();
-  };
+    // popup logic
+    window.openOrderPopup = () => {
+      const totalItems = Object.values(cart).reduce((a, b) => a + b, 0);
+      if (totalItems === 0) {
+        alert('Your cart is empty. Add items first.');
+        return;
+      }
+      // reset any previous selection to no default
+      document.getElementById('deliverySelect').value = '';
+      document.getElementById('fullName').value = '';
+      document.getElementById('mobileNo').value = '';
+      document.getElementById('addressField').value = '';
+      calcTotalAndDisplay(); // will show only subtotal (no delivery)
+      const pop = document.getElementById('orderPopup');
+      pop.style.display = 'flex';
+      setTimeout(() => pop.classList.add('active'), 10);
+    };
 
-  function updateCartIcon() {
-    let totalItems = Object.values(cart).reduce((a, b) => a + b, 0);
-    const badge = document.getElementById("cartBadge");
-    badge.innerText = totalItems;
-    badge.style.opacity = totalItems > 0 ? "1" : "0";
-    
-    // Also update popup if open
-    if(document.getElementById("popup").style.display === "flex") calculateTotal();
-  }
+    window.closePopup = () => {
+      const pop = document.getElementById('orderPopup');
+      pop.classList.remove('active');
+      setTimeout(() => pop.style.display = 'none', 250);
+    };
 
-  // --- Search Function ---
-  document.getElementById("searchInput").addEventListener("input", (e) => {
-    const term = e.target.value.toLowerCase();
-    const filtered = PRODUCTS.filter(p => 
-      p.title.toLowerCase().includes(term) || 
-      p.description.toLowerCase().includes(term)
-    );
-    renderProducts(filtered);
-  });
-
-  // --- Popup Logic ---
-  function calculateTotal() {
-    let subtotal = PRODUCTS.reduce((sum, p) => sum + (p.price * (cart[p.id] || 0)), 0);
-    let deliveryMethod = document.getElementById("delivery").value;
-    let deliveryFee = DELIVERY_CHARGES[deliveryMethod];
-    
-    document.getElementById("totalAmount").innerText = `Rs ${subtotal + deliveryFee}`;
-    return { subtotal, deliveryFee, total: subtotal + deliveryFee, deliveryMethod };
-  }
-
-  document.getElementById("delivery").addEventListener("change", calculateTotal);
-
-  window.openCart = () => {
-    let totalItems = Object.values(cart).reduce((a, b) => a + b, 0);
-    if(totalItems === 0) return alert("Your cart is empty! Add some products first.");
-    
-    calculateTotal();
-    const overlay = document.getElementById("popup");
-    overlay.style.display = "flex";
-    setTimeout(() => overlay.classList.add("active"), 10); // for animation
-  };
-
-  window.closeCart = () => {
-    const overlay = document.getElementById("popup");
-    overlay.classList.remove("active");
-    setTimeout(() => overlay.style.display = "none", 300);
-  };
-
-  // --- Send Order Logic ---
-  window.sendOrder = (method) => {
-    const name = document.getElementById("name").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const fullAddress = document.getElementById("fullAddress").value.trim(); // MANUAL ADDRESS
-    
-    if(!name || !phone) return alert("Please fill in Name and Phone Number.");
-    
-    // Check if delivery method is NOT pickup, address is mandatory
-    const deliveryMethod = document.getElementById("delivery").value;
-    if(deliveryMethod !== 'pickup' && !fullAddress) {
-      return alert("Please enter the Full Address for delivery (House #, Street, etc).");
+    // calculate total based on selection (or 0 delivery if none)
+    function calcTotalAndDisplay() {
+      const subtotal = PRODUCTS.reduce((sum, p) => sum + (p.price * (cart[p.id] || 0)), 0);
+      const deliveryVal = document.getElementById('deliverySelect').value;
+      const fee = (deliveryVal && DELIVERY_FEES.hasOwnProperty(deliveryVal)) ? DELIVERY_FEES[deliveryVal] : 0;
+      const total = subtotal + fee;
+      document.getElementById('totalAmountSpan').innerText = `Rs ${total}`;
+      return { subtotal, fee, total, deliveryMethod: deliveryVal };
     }
 
-    let cartItems = PRODUCTS.filter(p => cart[p.id] > 0);
-    if(cartItems.length === 0) return alert("Cart is empty.");
+    document.getElementById('deliverySelect').addEventListener('change', calcTotalAndDisplay);
 
-    // Build Message
-    const calc = calculateTotal();
-    const deliveryText = document.getElementById("delivery").options[document.getElementById("delivery").selectedIndex].text;
-    
-    let itemsList = cartItems.map(p => `• ${p.title} x ${cart[p.id]} (Rs ${p.price * cart[p.id]})`).join('\n');
+    // submit order
+    window.submitOrder = (method) => {
+      const name = document.getElementById('fullName').value.trim();
+      const phone = document.getElementById('mobileNo').value.trim();
+      const delivery = document.getElementById('deliverySelect').value;
+      const address = document.getElementById('addressField').value.trim();
 
-    let message = `🛒 *NEW ORDER - SSelix*\n\n` +
-                  `👤 *Name:* ${name}\n` +
-                  `📞 *Phone:* ${phone}\n\n` +
-                  `📦 *Order Summary:*\n${itemsList}\n` +
-                  `------------------------\n` +
-                  `💵 Subtotal: Rs ${calc.subtotal}\n` +
-                  `🚚 Delivery: ${deliveryText}\n` +
-                  `💰 *GRAND TOTAL: Rs ${calc.total}*\n` +
-                  `------------------------\n`;
-                  
-    if(deliveryMethod === 'pickup') {
-      message += `📍 *Type:* Self Pickup\n`;
-    } else {
-      message += `🏠 *Delivery Address:*\n${fullAddress}\n`;
-    }
+      if (!name || !phone) {
+        alert('Please fill name and phone number');
+        return;
+      }
+      if (!delivery) {
+        alert('Select a delivery method (pickup or paid)');
+        return;
+      }
 
-    // Send
-    if(method === 'whatsapp') {
-      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
-    } else if(method === 'email') {
-      let subject = `New Order from ${name} - SSelix`;
-      let body = message.replace(/\n/g, "%0D%0A");
-      window.location.href = `mailto:${MERCHANT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${body}`;
-    }
-  };
+      // if not pickup, address required
+      if (delivery !== 'pickup' && !address) {
+        alert('Please enter full delivery address');
+        return;
+      }
 
-  // Init
-  renderProducts(PRODUCTS);
+      const cartItems = PRODUCTS.filter(p => cart[p.id] > 0);
+      if (cartItems.length === 0) {
+        alert('Cart is empty.');
+        return;
+      }
 
+      const calc = calcTotalAndDisplay(); // refresh total
+      const deliveryText = document.getElementById('deliverySelect').selectedOptions[0].text;
+
+      let itemsList = cartItems.map(p => `• ${p.title} x${cart[p.id]}  = Rs ${p.price * cart[p.id]}`).join('\n');
+
+      let message = `🛒 *SSelix order*\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n\n📦 *Items:*\n${itemsList}\n-------------------\nSubtotal: Rs ${calc.subtotal}\nDelivery: ${deliveryText}\n💰 *TOTAL: Rs ${calc.total}*\n`;
+
+      if (delivery === 'pickup') {
+        message += `📍 *Pickup location:* Main Branch, SSelix Center\n`;
+      } else {
+        message += `🏠 *Delivery address:* ${address}\n`;
+      }
+
+      const WHATSAPP_NUMBER = "923102890002"; 
+      const MERCHANT_EMAIL = "sselix418@gmail.com";
+
+      if (method === 'whatsapp') {
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+      } else {
+        // email
+        const subject = `New order from ${name}`;
+        window.location.href = `mailto:${MERCHANT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+      }
+    };
+
+    // initial render
+    renderUI();
+  })();
 </script>
 </body>
 </html>
